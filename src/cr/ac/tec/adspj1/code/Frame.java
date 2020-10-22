@@ -38,8 +38,8 @@ class canvas extends JPanel implements ActionListener {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawString("Default Data", 125, 125);
-
     }
+
     JButton button1 = new JButton("Player 1");
     JButton button2 = new JButton("Player 2");
 
@@ -55,9 +55,17 @@ class canvas extends JPanel implements ActionListener {
         Object selection = e.getSource();
 
         if(selection == button1){
+            playe1Frame frame = new playe1Frame();
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             setBackground(Color.DARK_GRAY);
             System.out.println("Player 1 was pressed ");
         }else{
+            playe2Frame frame = new playe2Frame();
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             setBackground(Color.green);
             System.out.println("Player 2 was pressed");
         }
