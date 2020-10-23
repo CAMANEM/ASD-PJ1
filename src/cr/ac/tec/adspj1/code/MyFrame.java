@@ -54,7 +54,6 @@ class MyFrame extends JFrame implements ActionListener {
             System.out.println("Player 1 was pressed ");
         }else{
             this.remove(myCanvas);
-            setBackground(Color.green);
             this.add(ingame_canvas);
             this.repaint();
             this.revalidate();
