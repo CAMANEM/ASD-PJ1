@@ -11,14 +11,16 @@ import java.util.logging.Logger;
 public class Servidor extends Observable implements Runnable{
 
     private int puerto;
-    //private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME ); // usa el logger configurado en la clase Interfaz
+    private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME ); // usa el logger configurado en la clase Interfaz
 
     /**
      * Constructor
      */
     public Servidor() {
-        puerto = 5000;
+
+        this.puerto = 6000;
     }
+
 
     /**
      * Hilo en el que el se crea el servidor y se espera la llegada de un mensaje
@@ -32,13 +34,13 @@ public class Servidor extends Observable implements Runnable{
         DataInputStream in;
 
 
-        while (puerto < 10000){
+        while (this.puerto < 10000){
 
             //Este primer try busca un puerto libre (del 5000 al 10000) para establecer el servidor
             try {
                 //Crea el socket del servidor
                 servidor = new ServerSocket(puerto);
-                //logger.info("Servidor iniciado");
+                this.logger.info("Server started");
                 System.out.println(this.getPuerto());
 
                 //Este segundo try se encarga de estar siempre esperando un mensaje
@@ -46,8 +48,7 @@ public class Servidor extends Observable implements Runnable{
 
                     //Espero a que un cliente se conecte
                     socket = servidor.accept();
-                    System.out.println("se entro algo");
-                    //logger.info("Mensaje entrante detectado");
+                    this.logger.info("Mensaje entrante detectado");
 
                     in = new DataInputStream(socket.getInputStream());
 
@@ -61,15 +62,14 @@ public class Servidor extends Observable implements Runnable{
 
                     //Cierro el socket
                     socket.close();
-
                 }
             } catch (IOException ex) {
-                //logger.log(Level.SEVERE, "Fallo al recibir un nuevo mensaje ó iniciarlizar servidor");
+                this.logger.log(Level.SEVERE, "Fallo al recibir un nuevo mensaje ó inicializar servidor");
                 puerto++;
             }
         }
-
     }
+
 
     /**
      * Método para obtener el puerto en el que se encuentra el servidor
