@@ -10,6 +10,7 @@ public class Main implements Observer {
 
     public static void main(String[] args) {
         MyFrame frame1 = new MyFrame();
+        frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         new Main();

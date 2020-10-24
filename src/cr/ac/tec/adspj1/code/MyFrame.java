@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -32,8 +33,7 @@ class MyFrame extends JFrame implements ActionListener {
 
     public void goMenu(){
         this.add(myCanvas);
-        this.myCanvas.add(btn_anfitrion);
-        this.myCanvas.add(btn_invitado);
+        this.myCanvas.putButtons(btn_anfitrion, btn_invitado);
         btn_anfitrion.addActionListener(this);
         btn_invitado.addActionListener(this);
     }
