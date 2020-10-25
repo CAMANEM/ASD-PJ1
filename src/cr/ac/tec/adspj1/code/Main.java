@@ -26,7 +26,6 @@ public class Main implements Observer {
         loggerConfig();
         iniciarServidor();
         graphics.addObserver(this);
-        //System.out.println(servidor.getPuerto());
     }
 
     public void playGame(){
@@ -35,6 +34,7 @@ public class Main implements Observer {
 
             System.out.println(this.servidor.finishTurn());
             System.out.println("123");
+
         }
     }
 
@@ -44,7 +44,6 @@ public class Main implements Observer {
         this.servidor = new Servidor();
 
     }
-
 
     /**
      * Observer que se activa cuando el servidor recibe un mensaje.
@@ -61,7 +60,11 @@ public class Main implements Observer {
             playGame();
         }
         else{
-            new Client("host",192, "mensaje");
+
+            Client cliente = new Client("host",192, "mensaje");
+            Thread hilo = new Thread(cliente);
+            hilo.start();
+
             playGame();
         }
     }
