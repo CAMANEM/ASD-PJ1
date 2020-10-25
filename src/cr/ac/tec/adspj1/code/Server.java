@@ -7,16 +7,25 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ *This class make possible receive information after each turn,
+ * with the finishTurn method.
+ *
+ * @version 1.0
+ */
 public class Servidor {
 
     private int puerto;
-    private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME ); // usa el logger configurado en la clase Interfaz
+    private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
     ServerSocket servidor = null;
     Socket socket = null;
     DataInputStream in;
 
+
     /**
-     * Constructor
+     * This constructor search for a available port to use.
+     * The ports searched range from 600 to 10000
      */
     public Servidor() {
 
@@ -24,40 +33,46 @@ public class Servidor {
 
         while (this.puerto < 10000) {
 
-            //Este primer try busca un puerto libre (del 5000 al 10000) para establecer el servidor
             try {
-                //Crea el socket del servidor
                 this.servidor = new ServerSocket(puerto);
-                System.out.println(this.puerto);
+                this.logger.log(Level.INFO, "Server initialized in port " + this.getPuerto());
                 break;
+
+
             } catch (IOException ex) {
-                this.logger.log(Level.SEVERE, "Fallo al recibir un nuevo mensaje ó inicializar servidor");
+                this.logger.log(Level.SEVERE, "Failed initializing server, occupied port");
                 this.puerto++;
             }
         }
     }
 
+
+    /**
+     * After each turn this method is called to wait until
+     * receive an information message when the other play
+     * finish his turn.
+     *
+     * @return a jason with the information of the opponent's play.
+     */
     public String finishTurn() {
-        //Este segundo try se encarga de estar siempre esperando un mensaje
+
         while (true) {
+
             try {
 
-                //Espero a que un cliente se conecte
-                System.out.println("waiting");
+                this.logger.log(Level.INFO, "Waiting for a message");
                 this.socket = this.servidor.accept();
-                this.logger.info("Mensaje entrante detectado");
+                this.logger.info("Incoming message detected");
 
                 in = new DataInputStream(socket.getInputStream());
-
-                //Leo el mensaje que me envia
                 String mensaje = in.readUTF();
-
-                //Cierro el socket
                 socket.close();
 
                 return mensaje;
             }
+
             catch (IOException e) {
+
                 this.logger.log(Level.SEVERE, "Error receiving message");;
             }
         }
@@ -65,8 +80,7 @@ public class Servidor {
 
 
     /**
-     * Método para obtener el puerto en el que se encuentra el servidor
-     * @return
+     * @return the server´s port
      */
     public int getPuerto() {
         return puerto;

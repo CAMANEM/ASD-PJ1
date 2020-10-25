@@ -6,7 +6,9 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.*;
 
-//Este es el main actualizado
+/**This is the principal class, handles the communication b
+ *
+ */
 public class Main implements Observer {
 
 
