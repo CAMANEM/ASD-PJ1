@@ -12,9 +12,6 @@ import javax.swing.*;
 
 
 
-
-
-
 /**This is the principal class, handles the communication between graphic code and logic code
  *
  *@version 1.0
