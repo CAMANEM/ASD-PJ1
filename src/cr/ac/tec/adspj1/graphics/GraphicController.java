@@ -1,28 +1,41 @@
-package cr.ac.tec.adspj1.code;
+package cr.ac.tec.adspj1.graphics;
 
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Observable;
-import java.util.logging.Level;
+import java.awt.event.ActionEvent;
 import java.util.logging.Logger;
+import java.util.Observable;
+import javax.swing.*;
 
+
+/**
+ * This class makes easier the control of the graphic
+ * interface.
+ * The Main use only this class directly to make any
+ * change in the graphic interface.
+ *
+ * @version 1.0
+ */
 public class GraphicController extends Observable implements ActionListener {
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
-    JButton btn_invitado = new JButton("Entrar como invitado");
-    JButton btn_anfitrion = new JButton("Ser anfitrión");
+    JButton btn_invitado = new JButton("Enter as guest");
+    JButton btn_anfitrion = new JButton("Enter as host");
     MyFrame frame;
 
+
+    /**
+     * This constructor calls the method to create a frame.
+     */
     public GraphicController(){
 
         createFrame();
     }
 
 
+    /**
+     * Creates a frame that initializes with the canvas of the
+     * menu and add listeners to the menu buttons.
+     */
     public void createFrame(){
 
         this.frame = new MyFrame();
@@ -35,31 +48,31 @@ public class GraphicController extends Observable implements ActionListener {
     }
 
 
-
+    /**
+     * This ActionListener is activated when a menu button is pressed,
+     * then chance to the game Canvas and notify the button pressed
+     * to the observer of the Main.
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
         Object selection = e.getSource();
 
         if(selection == btn_anfitrion){
-            try{
-                InetAddress ip = InetAddress.getLocalHost();
-                System.out.println(ip.getHostAddress());
-                this.frame.goGame();
 
-                this.setChanged();
-                this.notifyObservers("1");
-                this.clearChanged();
-
-
-                //observers cuando iniicar servidor
-            }
-            catch (UnknownHostException ex){
-                this.logger.log(Level.SEVERE, "Cannot get HOST IP");
-            }
-        }
-        else{
             this.frame.goGame();
+
+            this.setChanged();
+            this.notifyObservers("1");
+            this.clearChanged();
+        }
+
+        else{
+
+            this.frame.goGame();
+
             this.setChanged();
             this.notifyObservers("0");
             this.clearChanged();

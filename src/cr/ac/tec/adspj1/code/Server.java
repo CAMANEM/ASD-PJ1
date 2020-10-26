@@ -1,11 +1,13 @@
 package cr.ac.tec.adspj1.code;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.logging.Level;
+import java.net.UnknownHostException;
 import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.io.DataInputStream;
+import java.net.ServerSocket;
+import java.net.InetAddress;
+import java.io.IOException;
+import java.net.Socket;
 
 
 /**
@@ -14,20 +16,21 @@ import java.util.logging.Logger;
  *
  * @version 1.0
  */
-public class Servidor {
+public class Server {
 
-    private int puerto;
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
-    ServerSocket servidor = null;
-    Socket socket = null;
-    DataInputStream in;
+    private ServerSocket servidor = null;
+    private Socket socket = null;
+    private DataInputStream in;
+    private int puerto;
+    private String ip;
 
 
     /**
      * This constructor search for a available port to use.
      * The ports searched range from 600 to 10000
      */
-    public Servidor() {
+    public Server() {
 
         this.puerto = 6000;
 
@@ -62,9 +65,9 @@ public class Servidor {
 
                 this.logger.log(Level.INFO, "Waiting for a message");
                 this.socket = this.servidor.accept();
-                this.logger.info("Incoming message detected");
+                this.logger.log(Level.INFO,"Incoming message detected");
 
-                in = new DataInputStream(socket.getInputStream());
+                in = new DataInputStream(this.socket.getInputStream());
                 String mensaje = in.readUTF();
                 socket.close();
 
@@ -77,6 +80,25 @@ public class Servidor {
             }
         }
     }
+
+
+    /**
+     * This method gets the player host ip
+     * @return the host ip
+     */
+    public String getHost(){
+
+        try{
+
+        this.ip = InetAddress.getLocalHost().getHostAddress();
+
+        }
+
+        catch (UnknownHostException e) {
+            this.logger.log(Level.INFO,"Error getting Host");
+        }
+        return this.ip;
+        }
 
 
     /**

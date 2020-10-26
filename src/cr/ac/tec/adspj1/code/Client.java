@@ -1,58 +1,62 @@
 package cr.ac.tec.adspj1.code;
 
-import javax.swing.*;
 import java.io.DataOutputStream;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.*;
 
+
+/**
+ * This class is used to send a message to
+ * the opponent with the information of
+ * the play made.
+ *
+ * @version 1.0
+ */
 public class Client implements Runnable {
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
     private String mensaje;
-    private int puerto;
     private String HOST;
+    private int puerto;
 
 
 
     /**
-     * Constructor de la clase
-     * @param puerto
-     * @param mensaje
+     * The constructor of this class request the port
+     * and host ip of the other player.
      */
-    public Client(String HOST,int puerto, String mensaje) {
-        this.puerto = Integer.parseInt(JOptionPane.showInputDialog("introduzca el puerto"));
+    public Client() {
+
+        this.puerto = Integer.parseInt(JOptionPane.showInputDialog("introduzca el puerto")); //try needed for strings entries
         this.mensaje = JOptionPane.showInputDialog("introduzca su mensaje");
         this.HOST = JOptionPane.showInputDialog("introduzca el HOST");
     }
 
+
     /**
-     * Hilo con el que se envía el mensaje
+     * This thread is used to send a message to the
+     * other player.
      */
     @Override
     public void run() {
-        //Host del servidor
-        //HOST = "192.168.1.108";//127.0.0.1
-        //Puerto del servidor
+
         DataOutputStream out;
 
         try {
-            //Creo el socket para conectarme con el Client
+            this.logger.info("Sending message...");
             Socket socket = new Socket(HOST, puerto);
 
             out = new DataOutputStream(socket.getOutputStream());
-
-            //Envio un mensaje al Client
             out.writeUTF(mensaje);
-
             socket.close();
 
-            logger.log(Level.INFO, "Mensaje enviado");
+            this.logger.log(Level.INFO, "Message sent");
 
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Fallo al enviar mensaje. Probablemente el destinatario no es válido");
+            this.logger.log(Level.SEVERE, "Failed to send message. The address is probably invalid");
         }
-
     }
 }
