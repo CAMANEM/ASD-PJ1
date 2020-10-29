@@ -1,8 +1,11 @@
 package gui;
 
+import Code.List.CardActions;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Observable;
 import javax.swing.*;
@@ -17,6 +20,9 @@ import javax.swing.*;
  * @version 1.0
  */
 public class GraphicController extends Observable implements ActionListener {
+
+    boolean flags[] = {true, true , true, true, false, false, false, false, false, false};
+
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
     JButton btn_invitado = new JButton("Enter as guest");
@@ -35,6 +41,10 @@ public class GraphicController extends Observable implements ActionListener {
             this.button6, this.button7, this.button8, this.button9, this.button10};
     MyFrame frame;
 
+    private int position;
+    private int fullHand = 4;
+
+    CardActions controller = new CardActions(flags);
 
     /**
      * This constructor calls the method to create a frame.
@@ -43,6 +53,14 @@ public class GraphicController extends Observable implements ActionListener {
 
         createFrame();
         createGameButtons();
+        controller.setFlagList(flags);
+    }
+
+
+
+
+    public boolean[] getFlags() {
+        return flags;
     }
 
     public void createGameButtons() {
@@ -50,14 +68,28 @@ public class GraphicController extends Observable implements ActionListener {
         int posx =20;
 
         for (int i = 0; i < 10; i++) {
+            if (i < 4 ){
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/H_DamageIncresed.png");
+                handgame[i] = new JButton();
+                handgame[i].setBounds(posx, 480, 180, 250);
+                handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
+                handgame[i].addActionListener(this);
+                handgame[i].setEnabled(true);
 
-            ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/H_DamageIncresed.png");
-            handgame[i] = new JButton();
-            handgame[i].setBounds(posx, 480, 180, 250);
-            handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
-            handgame[i].addActionListener(this);
+            }else{
+
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/H_DamageIncresed.png");
+                handgame[i] = new JButton();
+                handgame[i].setBounds(posx, 480, 180, 250);
+                handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
+                handgame[i].addActionListener(this);
+                handgame[i].setEnabled(false);
+
+            }
+
             posx += 120;
         }
+
     }
 
     /**
@@ -86,24 +118,142 @@ public class GraphicController extends Observable implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+
+
         Object selection = e.getSource();
+
 
         if(selection == btn_anfitrion){
 
             this.frame.goGame(handgame);
 
             this.setChanged();
-            this.notifyObservers("1");
+            this.notifyObservers("host");
             this.clearChanged();
         }
 
-        else{
+        else if (selection == btn_invitado){
 
             this.frame.goGame(handgame);
+            this.setChanged();
+            this.notifyObservers("guest");
+            this.clearChanged();
+        }
+
+        else if (selection == handgame[0]){
+
+            if (fullHand < 10){
+                this.setChanged();
+                this.notifyObservers("0");
+                this.clearChanged();
+                //handgame[0].setEnabled(false);
+                controller.setFlagList(flags);
+                position = controller.SiteAnalysis();
+
+                handgame[position].setEnabled(true);
+                controller.getFlagList();
+                ++fullHand;
+                System.out.println(fullHand);
+
+            }else{
+                logger.log(Level.WARNING, "The hand game is full");
+            }
+
+
+        }
+        else if (selection == handgame[1]){
 
             this.setChanged();
-            this.notifyObservers("0");
+            this.notifyObservers("1");
             this.clearChanged();
+            handgame[1].setEnabled(false);
+            flags[1] = false;
+            controller.setFlagList(flags);
+            fullHand -= 1;
+            //flags = controller.getFlagList();
+
+
+        }
+        else if (selection == handgame[2]){
+
+            this.setChanged();
+            this.notifyObservers("2");
+            this.clearChanged();
+            handgame[2].setEnabled(false);
+            flags[2] = false;
+            fullHand -= 1;
+           // System.out.println(fullHand);
+
+        }
+        else if (selection == handgame[3]){
+
+            this.setChanged();
+            this.notifyObservers("3");
+            this.clearChanged();
+            handgame[3].setEnabled(false);
+            flags[3] = false;
+            fullHand -= 1;
+
+        }
+        else if (selection == handgame[4]){
+
+            this.setChanged();
+            this.notifyObservers("4");
+            this.clearChanged();
+            handgame[4].setEnabled(false);
+            flags[4] = false;
+            fullHand -= 1;
+
+        }
+        else if (selection == handgame[5]){
+
+            this.setChanged();
+            this.notifyObservers("5");
+            this.clearChanged();
+            handgame[5].setEnabled(false);
+            flags[5] = false;
+            fullHand -= 1;
+
+        }
+        else if (selection == handgame[6]){
+
+            this.setChanged();
+            this.notifyObservers("6");
+            this.clearChanged();
+            handgame[6].setEnabled(false);
+            flags[6] = false;
+            fullHand -= 1;
+
+        }
+        else if (selection == handgame[7]){
+
+            this.setChanged();
+            this.notifyObservers("7");
+            this.clearChanged();
+            handgame[7].setEnabled(false);
+            flags[7] = false;
+            fullHand -= 1;
+
+        }
+        else if (selection == handgame[8]){
+
+            this.setChanged();
+            this.notifyObservers("8");
+            this.clearChanged();
+            handgame[8].setEnabled(false);
+            flags[8] = false;
+            fullHand -= 1;
+
+        }
+        else if (selection == handgame[9]){
+
+            this.setChanged();
+            this.notifyObservers("9");
+            this.clearChanged();
+            handgame[9].setEnabled(false);
+            flags[9] = false;
+            fullHand -= 1;
+
         }
     }
 }

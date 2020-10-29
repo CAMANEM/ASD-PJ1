@@ -109,20 +109,59 @@ public class Main implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 
-        if(arg.equals("1")){
+        if(arg.equals("host")){
 
             JOptionPane.showMessageDialog(null, "Your port is " + this.server.getPuerto());
             JOptionPane.showMessageDialog(null, "Your host ip is " + this.server.getHost());
             playGame();
         }
-
-        else{
-
+        else if(arg.equals("guest")){
             this.client = new Client();
             Thread thread = new Thread(this.client);
             thread.start();
 
             playGame();
+
+        }
+        else if(arg.equals("0")){
+            //System.out.println("Card 1");
+
+        }
+        else if(arg.equals("1")){
+            //System.out.println("Card 2");
+        }
+        else if(arg.equals("2")){
+            //System.out.println("Card 3");
+        }
+        else if(arg.equals("3")){
+            //System.out.println("Card 4");
+        }
+        else if(arg.equals("4")){
+           // System.out.println("Card 5");
+        }
+        else if(arg.equals("5")){
+           // System.out.println("Card 6");
+        }
+        else if(arg.equals("6")){
+           // System.out.println("Card 7");
+        }
+        else if(arg.equals("7")){
+            //System.out.println("Card 8");
+        }
+        else if(arg.equals("8")){
+            //System.out.println("Card 9");
+        }
+        else if(arg.equals("9")){
+            //System.out.println("Card 10");
+        }
+
+        else{
+
+            /*this.client = new Client();
+            Thread thread = new Thread(this.client);
+            thread.start();
+
+            playGame();*/
         }
     }
 
