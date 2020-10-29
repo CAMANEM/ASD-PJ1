@@ -69,18 +69,6 @@ public class CanvasGame extends JPanel {
             System.out.println("hdfdjfh");
         }
     }
-        /*button1 = new JButton();
-        button1.setBounds(20, 480, 180, 250);
-        ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/H_DamageIncresed.png");
-        button1.setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(button1.getWidth(), button1.getHeight(), Image.SCALE_SMOOTH)));
-        this.add(button1);
-
-        button2 = new JButton();
-        button2.setBounds(400, 200, 250, 300);
-        ImageIcon buttonImage2 = new ImageIcon("src/main/java/gui/img/cards/H_Steal.png");
-        button2.setIcon(new ImageIcon(buttonImage2.getImage().getScaledInstance(button2.getWidth(), button2.getHeight(), Image.SCALE_SMOOTH)));
-        this.add(button2);*/
-
-    }
+}
 
 

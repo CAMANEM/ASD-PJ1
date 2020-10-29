@@ -1,0 +1,15 @@
+{
+  "1": {
+    "attackIncrease": 1,
+    "cardName": "Attack Increased",
+    "damage": 1,
+    "healing": 0,
+    "ignoreManaNextTurn": true,
+    "manaCost": 1,
+    "manaExtra": 0,
+    "skipTurn": false,
+    "stoolenCard": "1",
+    "summonsNextTurn": 3,
+    "song": "ubicacion del archivo de sonido"
+  }
+}

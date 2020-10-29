@@ -1,7 +1,8 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
 import gui.GraphicController;
+import Code.CardGetter;
 import Code.Server;
 import Code.Client;
+import Code.Card;
 
 import java.util.Observable;
 import java.io.IOException;
@@ -20,9 +21,9 @@ public class Main implements Observer {
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
     private GraphicController graphics;
-    private ObjectMapper object_mapper;
     private Server server;
     private Client client;
+    private Card card;
 
 
     /**
@@ -40,26 +41,17 @@ public class Main implements Observer {
      * This constructor calls the basic methods required to open the menu window
      */
     public Main() {
+        this.card = CardGetter.getCard("1"); //method to get the card object from an ID(when selected in hand)
+        String mensaje = CardGetter.getCardString(this.card); //method to convert card to string to sent to the other player
+        this.card = CardGetter.getCardfromMessage(mensaje); //method to convert a received message to a card Object
+        System.out.println(this.card.cardName);
+
         this.graphics = new GraphicController();
-        this.object_mapper = new ObjectMapper();
         this.graphics.addObserver(this);
-        startServer();
+        this.server = new Server();
         loggerConfig();
-        jsonTry();
     }
 
-    /**
-     * Clase de prueba-covertir un objeto a json
-     */
-    public void jsonTry(){
-        try {
-            String json = object_mapper.writeValueAsString(this.server);
-            System.out.println(json);
-        }
-        catch (com.fasterxml.jackson.core.JsonProcessingException e){
-            this.logger.log(Level.SEVERE,"fallo en json");
-        }
-    }
 
     /**
      * This method is called when players get connected
@@ -79,16 +71,6 @@ public class Main implements Observer {
             Thread thread = new Thread(client);
             thread.start();
         }
-    }
-
-
-    /**
-     * Creates the server class that is used to receive
-     * a message after you finish your turn.
-     */
-    public void startServer(){
-
-        this.server = new Server();
     }
 
 
