@@ -1,6 +1,8 @@
 package gui;
 
-import Code.List.CardActions;
+import Code.List.Circular.CardActions;
+import Code.List.Stack.Stack;
+import Code.List.Stack.RandomCards;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -37,9 +39,13 @@ public class GraphicController extends Observable implements ActionListener {
     JButton button8;
     JButton button9;
     JButton button10;
+    JButton deck;
     JButton [] handgame = {this.button1, this.button2, this.button3, this.button4, this.button5,
-            this.button6, this.button7, this.button8, this.button9, this.button10};
+            this.button6, this.button7, this.button8, this.button9, this.button10, this.deck};
     MyFrame frame;
+
+    RandomCards randomHand = new RandomCards();
+    Stack newNode = new Stack();
 
     private int position;
     private int fullHand = 4;
@@ -54,10 +60,9 @@ public class GraphicController extends Observable implements ActionListener {
         createFrame();
         createGameButtons();
         controller.setFlagList(flags);
+
+
     }
-
-
-
 
     public boolean[] getFlags() {
         return flags;
@@ -65,25 +70,40 @@ public class GraphicController extends Observable implements ActionListener {
 
     public void createGameButtons() {
 
+        for(int i = 0; i < 7; ++i){
+            newNode.insertNode(randomHand.RandomDeck());
+        }
+
+        int handImages [] = randomHand.RandomHand();
+
         int posx =20;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 11; i++) {
             if (i < 4 ){
-                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/H_DamageIncresed.png");
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+ handImages[i] +".png");
                 handgame[i] = new JButton();
                 handgame[i].setBounds(posx, 480, 180, 250);
                 handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
                 handgame[i].addActionListener(this);
                 handgame[i].setEnabled(true);
 
-            }else{
+            }else if(i < 10){
 
-                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/H_DamageIncresed.png");
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+ 50 +".png");
                 handgame[i] = new JButton();
                 handgame[i].setBounds(posx, 480, 180, 250);
                 handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
                 handgame[i].addActionListener(this);
                 handgame[i].setEnabled(false);
+
+            }
+            else{
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+(i + 1) +".png");
+                handgame[i] = new JButton();
+                handgame[i].setBounds(1050, 130, 180, 250);
+                handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
+                handgame[i].addActionListener(this);
+                handgame[i].setEnabled(true);
 
             }
 
@@ -119,7 +139,6 @@ public class GraphicController extends Observable implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
 
-
         Object selection = e.getSource();
 
 
@@ -142,23 +161,13 @@ public class GraphicController extends Observable implements ActionListener {
 
         else if (selection == handgame[0]){
 
-            if (fullHand < 10){
-                this.setChanged();
-                this.notifyObservers("0");
-                this.clearChanged();
-                //handgame[0].setEnabled(false);
-                controller.setFlagList(flags);
-                position = controller.SiteAnalysis();
-
-                handgame[position].setEnabled(true);
-                controller.getFlagList();
-                ++fullHand;
-                System.out.println(fullHand);
-
-            }else{
-                logger.log(Level.WARNING, "The hand game is full");
-            }
-
+            this.setChanged();
+            this.notifyObservers("0");
+            this.clearChanged();
+            handgame[0].setEnabled(false);
+            flags[0] = false;
+            controller.setFlagList(flags);
+            fullHand -= 1;
 
         }
         else if (selection == handgame[1]){
@@ -170,8 +179,6 @@ public class GraphicController extends Observable implements ActionListener {
             flags[1] = false;
             controller.setFlagList(flags);
             fullHand -= 1;
-            //flags = controller.getFlagList();
-
 
         }
         else if (selection == handgame[2]){
@@ -182,7 +189,6 @@ public class GraphicController extends Observable implements ActionListener {
             handgame[2].setEnabled(false);
             flags[2] = false;
             fullHand -= 1;
-           // System.out.println(fullHand);
 
         }
         else if (selection == handgame[3]){
@@ -253,6 +259,31 @@ public class GraphicController extends Observable implements ActionListener {
             handgame[9].setEnabled(false);
             flags[9] = false;
             fullHand -= 1;
+
+        }
+        else if (selection == handgame[10]){
+
+
+            if (fullHand < 10 && newNode.stackSize() > 0){
+                this.setChanged();
+                this.notifyObservers("deck");
+                this.clearChanged();
+                //handgame[0].setEnabled(false);
+                controller.setFlagList(flags);
+                position = controller.SiteAnalysis();
+
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+ newNode.delete() +".png");
+                handgame[position].setIcon(new ImageIcon(buttonImage.getImage().
+                        getScaledInstance(handgame[position].getWidth(), handgame[position].getHeight(), Image.SCALE_SMOOTH)));
+
+                handgame[position].setEnabled(true);
+                controller.getFlagList();
+                ++fullHand;
+
+
+            }else{
+                logger.log(Level.WARNING, "The hand game is full of the stack is out");
+            }
 
         }
     }

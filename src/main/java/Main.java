@@ -138,6 +138,7 @@ public class Main implements Observer {
         }
 
         else{
+            System.out.println("DECK");
 
             /*this.client = new Client();
             Thread thread = new Thread(this.client);

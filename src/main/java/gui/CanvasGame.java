@@ -1,6 +1,6 @@
 package gui;
 
-import Code.List.ListCL;
+import Code.List.Circular.ListCL;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -36,39 +36,28 @@ public class CanvasGame extends JPanel {
      * Add the labels with the cards to the canvas
      */
     public CanvasGame() {
-        int[] names = {1, 2, 3, 4, 1, 2};
+        this.setLayout(null);
 
-        for (int i = 0; i < names.length; i++) {
-            ImageIcon image = new ImageIcon("src/main/java/gui/img/general/Taste" + names[i] + ".jpg");
-            JLabel label1 = new JLabel(new ImageIcon());
-            label1.setBounds(20 * i * 5, 640, 75, 75);
-            label1.setIcon(new ImageIcon(image.getImage().getScaledInstance(label1.getWidth(), label1.getHeight(), Image.SCALE_SMOOTH)));
-            this.setLayout(null);
-            this.add(label1);
-
-        }
     }
     public void putButtons(JButton[] handgame) {
-        int numero = 0;
+
         ListCL listita =  new ListCL();
 
 
         for (int i = 0; i < 10; i++) {
 
             this.add(handgame[i]);
-            //this.remove(handgame[i]);
-
 
             listita.insert(handgame[i]);
-            ++numero;
 
         }
+        this.add(handgame[10]);
         if (!listita.verification()){
             listita.showList();
+
         }else{
             System.out.println("hdfdjfh");
         }
     }
+
 }
-
-
