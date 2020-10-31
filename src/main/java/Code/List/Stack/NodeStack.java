@@ -1,10 +1,10 @@
 package Code.List.Stack;
 
-public class Node {
+public class NodeStack {
     int num;
-    Node next;
+    NodeStack next;
 
-    public Node(int num) {
+    public NodeStack(int num) {
         this.num = num;
         next = null;
     }

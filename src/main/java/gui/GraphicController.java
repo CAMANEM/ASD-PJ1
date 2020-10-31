@@ -1,6 +1,7 @@
 package gui;
 
 import Code.List.Circular.CardActions;
+import Code.List.CircularLinked.Circular;
 import Code.List.Stack.Stack;
 import Code.List.Stack.RandomCards;
 
@@ -46,6 +47,7 @@ public class GraphicController extends Observable implements ActionListener {
 
     RandomCards randomHand = new RandomCards();
     Stack newNode = new Stack();
+    Circular circular = new Circular();
 
     private int position;
     private int fullHand = 4;
@@ -70,7 +72,7 @@ public class GraphicController extends Observable implements ActionListener {
 
     public void createGameButtons() {
 
-        for(int i = 0; i < 7; ++i){
+        for(int i = 0; i < 16; ++i){
             newNode.insertNode(randomHand.RandomDeck());
         }
 
@@ -86,6 +88,7 @@ public class GraphicController extends Observable implements ActionListener {
                 handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
                 handgame[i].addActionListener(this);
                 handgame[i].setEnabled(true);
+                circular.insert(String.valueOf(handImages[i]));
 
             }else if(i < 10){
 
@@ -95,6 +98,7 @@ public class GraphicController extends Observable implements ActionListener {
                 handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
                 handgame[i].addActionListener(this);
                 handgame[i].setEnabled(false);
+                circular.insert("");
 
             }
             else{
@@ -109,6 +113,7 @@ public class GraphicController extends Observable implements ActionListener {
 
             posx += 120;
         }
+        //circular.showCircular();
 
     }
 
@@ -161,6 +166,8 @@ public class GraphicController extends Observable implements ActionListener {
 
         else if (selection == handgame[0]){
 
+            String circularID = circular.getID(0);
+
             this.setChanged();
             this.notifyObservers("0");
             this.clearChanged();
@@ -171,6 +178,8 @@ public class GraphicController extends Observable implements ActionListener {
 
         }
         else if (selection == handgame[1]){
+
+            String circularID = circular.getID(1);
 
             this.setChanged();
             this.notifyObservers("1");
@@ -183,6 +192,8 @@ public class GraphicController extends Observable implements ActionListener {
         }
         else if (selection == handgame[2]){
 
+            String circularID = circular.getID(2);
+
             this.setChanged();
             this.notifyObservers("2");
             this.clearChanged();
@@ -192,6 +203,8 @@ public class GraphicController extends Observable implements ActionListener {
 
         }
         else if (selection == handgame[3]){
+
+            String circularID = circular.getID(3);
 
             this.setChanged();
             this.notifyObservers("3");
@@ -203,6 +216,8 @@ public class GraphicController extends Observable implements ActionListener {
         }
         else if (selection == handgame[4]){
 
+            String circularID = circular.getID(4);
+
             this.setChanged();
             this.notifyObservers("4");
             this.clearChanged();
@@ -212,6 +227,8 @@ public class GraphicController extends Observable implements ActionListener {
 
         }
         else if (selection == handgame[5]){
+
+            String circularID = circular.getID(5);
 
             this.setChanged();
             this.notifyObservers("5");
@@ -223,6 +240,8 @@ public class GraphicController extends Observable implements ActionListener {
         }
         else if (selection == handgame[6]){
 
+            String circularID = circular.getID(6);
+
             this.setChanged();
             this.notifyObservers("6");
             this.clearChanged();
@@ -232,6 +251,8 @@ public class GraphicController extends Observable implements ActionListener {
 
         }
         else if (selection == handgame[7]){
+
+            String circularID = circular.getID(7);
 
             this.setChanged();
             this.notifyObservers("7");
@@ -243,6 +264,8 @@ public class GraphicController extends Observable implements ActionListener {
         }
         else if (selection == handgame[8]){
 
+            String circularID = circular.getID(8);
+
             this.setChanged();
             this.notifyObservers("8");
             this.clearChanged();
@@ -252,6 +275,8 @@ public class GraphicController extends Observable implements ActionListener {
 
         }
         else if (selection == handgame[9]){
+
+            String circularID = circular.getID(9);
 
             this.setChanged();
             this.notifyObservers("9");
@@ -265,20 +290,23 @@ public class GraphicController extends Observable implements ActionListener {
 
 
             if (fullHand < 10 && newNode.stackSize() > 0){
+
+                int ID = newNode.delete();
                 this.setChanged();
                 this.notifyObservers("deck");
                 this.clearChanged();
-                //handgame[0].setEnabled(false);
                 controller.setFlagList(flags);
                 position = controller.SiteAnalysis();
 
-                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+ newNode.delete() +".png");
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+ ID +".png");
                 handgame[position].setIcon(new ImageIcon(buttonImage.getImage().
                         getScaledInstance(handgame[position].getWidth(), handgame[position].getHeight(), Image.SCALE_SMOOTH)));
 
                 handgame[position].setEnabled(true);
                 controller.getFlagList();
                 ++fullHand;
+
+                circular.modify(position, String.valueOf(ID));
 
 
             }else{

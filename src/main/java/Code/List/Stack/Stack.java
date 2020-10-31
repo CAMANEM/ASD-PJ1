@@ -1,7 +1,7 @@
 package Code.List.Stack;
 
 public class Stack {
-    private Node last;
+    private NodeStack last;
     int size;
     String list = "";
 
@@ -22,7 +22,7 @@ public class Stack {
     public void insertNode(int node){
         System.out.println(node);
 
-        Node newNode = new Node(node);
+        NodeStack newNode = new NodeStack(node);
         newNode.next = last;
         last = newNode;
         size++;

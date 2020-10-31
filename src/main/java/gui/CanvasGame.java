@@ -1,7 +1,5 @@
 package gui;
 
-import Code.List.Circular.ListCL;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -41,23 +39,23 @@ public class CanvasGame extends JPanel {
     }
     public void putButtons(JButton[] handgame) {
 
-        ListCL listita =  new ListCL();
+        //ListCL listita =  new ListCL();
 
 
         for (int i = 0; i < 10; i++) {
 
             this.add(handgame[i]);
 
-            listita.insert(handgame[i]);
+            //listita.insert(handgame[i]);
 
         }
         this.add(handgame[10]);
-        if (!listita.verification()){
+        /*if (!listita.verification()){
             listita.showList();
 
         }else{
             System.out.println("hdfdjfh");
-        }
+        }*/
     }
 
 }
