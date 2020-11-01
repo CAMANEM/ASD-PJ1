@@ -14,7 +14,7 @@ import java.net.Socket;
  *This class make possible receive information after each turn,
  * with the finishTurn method.
  *
- * @version 1.0
+ * @version 1.1
  */
 public class Server {
 
@@ -22,7 +22,7 @@ public class Server {
     private ServerSocket servidor = null;
     private Socket socket = null;
     private DataInputStream in;
-    private int puerto;
+    private int port;
     private String ip;
 
 
@@ -32,19 +32,19 @@ public class Server {
      */
     public Server() {
 
-        this.puerto = 6000;
+        this.port = 6000;
 
-        while (this.puerto < 10000) {
+        while (this.port < 10000) {
 
             try {
-                this.servidor = new ServerSocket(puerto);
-                this.logger.log(Level.INFO, "Server initialized in port " + this.getPuerto());
+                this.servidor = new ServerSocket(port);
+                this.logger.log(Level.INFO, "Server initialized in port " + this.getPort());
                 break;
 
 
             } catch (IOException ex) {
                 this.logger.log(Level.SEVERE, "Failed initializing server, occupied port");
-                this.puerto++;
+                this.port++;
             }
         }
     }
@@ -104,7 +104,7 @@ public class Server {
     /**
      * @return the server´s port
      */
-    public int getPuerto() {
-        return puerto;
+    public int getPort() {
+        return port;
     }
 }

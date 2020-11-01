@@ -1,8 +1,5 @@
+import Code.*;
 import gui.GraphicController;
-import Code.CardGetter;
-import Code.Server;
-import Code.Client;
-import Code.Card;
 
 import java.util.Observable;
 import java.io.IOException;
@@ -14,7 +11,7 @@ import javax.swing.*;
 
 /**This is the principal class, handles the communication between graphic code and logic code
  *
- *@version 1.0
+ *@version 1.1
  */
 public class Main implements Observer {
 
@@ -41,10 +38,10 @@ public class Main implements Observer {
      * This constructor calls the basic methods required to open the menu window
      */
     public Main() {
-        this.card = CardGetter.getCard("1"); //method to get the card object from an ID(when selected in hand)
-        String mensaje = CardGetter.getCardString(this.card); //method to convert card to string to sent to the other player
-        this.card = CardGetter.getCardfromMessage(mensaje); //method to convert a received message to a card Object
-        System.out.println(this.card.cardName);
+        //this.card = CardGetter.getCard("6"); //method to get the card object from an ID(when selected in hand)
+        //String mensaje = CardGetter.getCardString(this.card); //method to convert card to string to sent to the other player
+        //this.card = CardGetter.getCardfromMessage(mensaje); //method to convert a received message to a card Object
+        //System.out.println(this.card.healing);
 
         this.graphics = new GraphicController();
         this.graphics.addObserver(this);
@@ -63,14 +60,10 @@ public class Main implements Observer {
      */
     public void playGame(){
 
-        while (true){
-
-            System.out.println(this.server.finishTurn());
-            System.out.println("recibio un mensaje, este es su turno");
-            this.client = new Client();
-            Thread thread = new Thread(client);
-            thread.start();
-        }
+        this.card = CardGetter.getCardfromMessage(this.server.finishTurn());
+        Player.opponentPlay(this.card);
+        this.graphics.updateStats(Integer.toString(Player.getLife()), Integer.toString(Player.getMana()));
+        System.out.println("recibió un mensaje, este es su turno");
     }
 
 
@@ -93,54 +86,40 @@ public class Main implements Observer {
 
         if(arg.equals("host")){
 
-            JOptionPane.showMessageDialog(null, "Your port is " + this.server.getPuerto());
+            JOptionPane.showMessageDialog(null, "Your port is " + this.server.getPort());
             JOptionPane.showMessageDialog(null, "Your host ip is " + this.server.getHost());
-            playGame();
+            Player.reset();
+            String[] guestIP = ((String) this.server.finishTurn()).split(":"); //host - port
+            this.client = new Client(guestIP[0], guestIP[1]);
+            logger.log(Level.INFO, "Is your turn, the host does the first play");
+            //playGame();
         }
+
         else if(arg.equals("guest")){
-            this.client = new Client();
-            Thread thread = new Thread(this.client);
-            thread.start();
-
+            //Connect the host and guest
+            boolean players_not_Conected = true;
+            while(players_not_Conected) {
+                this.client = new Client();
+                if (this.server.getHost().equals(this.client.getHOST()) &&
+                        this.server.getPort() == this.client.getPort()){
+                    logger.log(Level.WARNING, "The host and port entered are yours");
+                }
+                else {
+                    players_not_Conected = this.client.sendMessage(this.server.getHost() + ":" + this.server.getPort() + ":");
+                }
+            }
+            logger.log(Level.INFO, "Players connected");
+            Player.reset();
             playGame();
-
-        }
-        else if(arg.equals("0")){
-            //System.out.println("Card 1");
-
-        }
-        else if(arg.equals("1")){
-            //System.out.println("Card 2");
-        }
-        else if(arg.equals("2")){
-            //System.out.println("Card 3");
-        }
-        else if(arg.equals("3")){
-            //System.out.println("Card 4");
-        }
-        else if(arg.equals("4")){
-           // System.out.println("Card 5");
-        }
-        else if(arg.equals("5")){
-           // System.out.println("Card 6");
-        }
-        else if(arg.equals("6")){
-           // System.out.println("Card 7");
-        }
-        else if(arg.equals("7")){
-            //System.out.println("Card 8");
-        }
-        else if(arg.equals("8")){
-            //System.out.println("Card 9");
-        }
-        else if(arg.equals("9")){
-            //System.out.println("Card 10");
         }
 
         else{
-            //System.out.println("DECK");
-
+            this.card = (Card) arg;
+            Player.playMyTurn(this.card);
+            this.client.sendMessage(CardGetter.getCardString(this.card));
+            playGame();
         }
+
     }
 
 

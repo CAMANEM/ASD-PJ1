@@ -8,13 +8,13 @@ import java.awt.*;
  * methods to change between menu canvas and game
  * canvas
  *
- * @version 1.0
+ * @version 1.1
  */
 class MyFrame extends JFrame {
 
 
-    public CanvasMenu myCanvas = new CanvasMenu();
-    public CanvasGame ingame_canvas = new CanvasGame();
+    private CanvasMenu myCanvas = new CanvasMenu();
+    private CanvasGame ingame_canvas = new CanvasGame();
 
 
     /**
@@ -53,12 +53,23 @@ class MyFrame extends JFrame {
      * Removes the canvasMenu from the frame and
      * sets the gameCanvas on the frame
      */
-    public void goGame(JButton[] handgame){
+    public void goGame(JButton[] handgame, JButton skipTurn){
         this.remove(myCanvas);
         this.add(ingame_canvas);
-        this.ingame_canvas.putButtons(handgame);
+        this.ingame_canvas.putButtons(handgame, skipTurn);
         this.repaint();
         this.revalidate();
     }
 
+
+    public void updateStats(String life, String mana){
+        this.ingame_canvas.updateStats(life, mana);
+    }
+
+    public void updateSummonedCard(String ID){
+        this.ingame_canvas.updateSummonedCard(ID);
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }
 }

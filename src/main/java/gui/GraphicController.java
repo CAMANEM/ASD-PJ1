@@ -1,13 +1,17 @@
 package gui;
 
+import Code.Card;
+import Code.CardGetter;
 import Code.List.Circular.CardActions;
 import Code.List.CircularLinked.Circular;
 import Code.List.Stack.Stack;
 import Code.List.Stack.RandomCards;
+import Code.Player;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Observable;
@@ -41,6 +45,7 @@ public class GraphicController extends Observable implements ActionListener {
     JButton button9;
     JButton button10;
     JButton deck;
+    JButton skipTurn;
     JButton [] handgame = {this.button1, this.button2, this.button3, this.button4, this.button5,
             this.button6, this.button7, this.button8, this.button9, this.button10, this.deck};
     MyFrame frame;
@@ -63,7 +68,6 @@ public class GraphicController extends Observable implements ActionListener {
         createGameButtons();
         controller.setFlagList(flags);
 
-
     }
 
     public boolean[] getFlags() {
@@ -71,6 +75,10 @@ public class GraphicController extends Observable implements ActionListener {
     }
 
     public void createGameButtons() {
+
+        skipTurn = new JButton("skip turn");
+        skipTurn.setBounds(1100, 420, 90, 25);
+        skipTurn.addActionListener(this);
 
         for(int i = 0; i < 16; ++i){
             newNode.insertNode(randomHand.RandomDeck());
@@ -149,7 +157,7 @@ public class GraphicController extends Observable implements ActionListener {
 
         if(selection == btn_anfitrion){
 
-            this.frame.goGame(handgame);
+            this.frame.goGame(handgame, skipTurn);
 
             this.setChanged();
             this.notifyObservers("host");
@@ -158,143 +166,28 @@ public class GraphicController extends Observable implements ActionListener {
 
         else if (selection == btn_invitado){
 
-            this.frame.goGame(handgame);
+            this.frame.goGame(handgame, skipTurn);
             this.setChanged();
             this.notifyObservers("guest");
             this.clearChanged();
         }
 
-        else if (selection == handgame[0]){
-
-            String circularID = circular.getID(0);
-
+        else if (selection == skipTurn){
+            Card card = CardGetter.getCard("40");
             this.setChanged();
-            this.notifyObservers("0");
+            this.notifyObservers(card);
             this.clearChanged();
-            handgame[0].setEnabled(false);
-            flags[0] = false;
-            controller.setFlagList(flags);
-            fullHand -= 1;
-
         }
-        else if (selection == handgame[1]){
 
-            String circularID = circular.getID(1);
-
-            this.setChanged();
-            this.notifyObservers("1");
-            this.clearChanged();
-            handgame[1].setEnabled(false);
-            flags[1] = false;
-            controller.setFlagList(flags);
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[2]){
-
-            String circularID = circular.getID(2);
-
-            this.setChanged();
-            this.notifyObservers("2");
-            this.clearChanged();
-            handgame[2].setEnabled(false);
-            flags[2] = false;
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[3]){
-
-            String circularID = circular.getID(3);
-
-            this.setChanged();
-            this.notifyObservers("3");
-            this.clearChanged();
-            handgame[3].setEnabled(false);
-            flags[3] = false;
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[4]){
-
-            String circularID = circular.getID(4);
-
-            this.setChanged();
-            this.notifyObservers("4");
-            this.clearChanged();
-            handgame[4].setEnabled(false);
-            flags[4] = false;
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[5]){
-
-            String circularID = circular.getID(5);
-
-            this.setChanged();
-            this.notifyObservers("5");
-            this.clearChanged();
-            handgame[5].setEnabled(false);
-            flags[5] = false;
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[6]){
-
-            String circularID = circular.getID(6);
-
-            this.setChanged();
-            this.notifyObservers("6");
-            this.clearChanged();
-            handgame[6].setEnabled(false);
-            flags[6] = false;
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[7]){
-
-            String circularID = circular.getID(7);
-
-            this.setChanged();
-            this.notifyObservers("7");
-            this.clearChanged();
-            handgame[7].setEnabled(false);
-            flags[7] = false;
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[8]){
-
-            String circularID = circular.getID(8);
-
-            this.setChanged();
-            this.notifyObservers("8");
-            this.clearChanged();
-            handgame[8].setEnabled(false);
-            flags[8] = false;
-            fullHand -= 1;
-
-        }
-        else if (selection == handgame[9]){
-
-            String circularID = circular.getID(9);
-
-            this.setChanged();
-            this.notifyObservers("9");
-            this.clearChanged();
-            handgame[9].setEnabled(false);
-            flags[9] = false;
-            fullHand -= 1;
-
-        }
         else if (selection == handgame[10]){
 
 
             if (fullHand < 10 && newNode.stackSize() > 0){
 
                 int ID = newNode.delete();
-                this.setChanged();
-                this.notifyObservers("deck");
-                this.clearChanged();
+                //this.setChanged();
+                //this.notifyObservers("deck");
+                //this.clearChanged();
                 controller.setFlagList(flags);
                 position = controller.SiteAnalysis();
 
@@ -312,7 +205,39 @@ public class GraphicController extends Observable implements ActionListener {
             }else{
                 logger.log(Level.WARNING, "The hand game is full of the stack is out");
             }
-
         }
+
+        else {
+
+            //Searches for the button pressed
+            for(int index = 0; index <= 9; ++index){
+
+                if (selection == handgame[index]){
+
+                    String circularID = circular.getID(index);
+                    Card card = CardGetter.getCard(circularID);
+                    //Check that the player has enough mana for the summon
+                    if(card.manaCost <= Player.getMana()) {
+
+                        handgame[index].setEnabled(false);
+                        flags[index] = false;
+                        fullHand -= 1;
+                        this.frame.updateSummonedCard(circularID);
+                        this.setChanged();
+                        this.notifyObservers(card);
+                        this.clearChanged();
+                    }
+
+                    else{
+                        logger.log(Level.WARNING, "You don´t have enough mana for this summon");
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    public void updateStats(String life, String mana){
+        this.frame.updateStats(life, mana);
     }
 }

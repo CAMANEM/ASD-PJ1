@@ -11,6 +11,10 @@ import java.io.IOException;
  */
 public class CanvasGame extends JPanel {
 
+    private JLabel life = new JLabel("1000");
+    private JLabel mana = new JLabel("200");
+    private JLabel summonedCard = new JLabel();
+
 
     /**
      * Draws the background image
@@ -31,13 +35,36 @@ public class CanvasGame extends JPanel {
 
 
     /**
-     * Add the labels with the cards to the canvas
+     * Add the labels with the life and mana to the canvas
      */
     public CanvasGame() {
+
         this.setLayout(null);
 
+        life.setBounds(50, 300, 100, 50);
+        mana.setBounds(50, 350, 100, 50);
+        summonedCard.setBounds(600, 50, 270, 350);
+        life.setFont(new Font("Arial", Font.PLAIN, 30));
+        mana.setFont(new Font("Arial", Font.PLAIN, 30));
+        //updateSummonedCard("12");
+        this.add(summonedCard);
+        this.add(life);
+        this.add(mana);
     }
-    public void putButtons(JButton[] handgame) {
+
+
+    public void updateStats(String life, String mana){
+        this.life.setText(life);
+        this.mana.setText(mana);
+    }
+
+    /**
+     * Add the buttons with the card images to the canvas
+     *
+     * @param handgame list of buttons representing the player hand of cards
+     * @param skipTurn button to skip your turn
+     */
+    public void putButtons(JButton[] handgame, JButton skipTurn) {
 
         //ListCL listita =  new ListCL();
 
@@ -50,6 +77,7 @@ public class CanvasGame extends JPanel {
 
         }
         this.add(handgame[10]);
+        this.add(skipTurn);
         /*if (!listita.verification()){
             listita.showList();
 
@@ -58,4 +86,9 @@ public class CanvasGame extends JPanel {
         }*/
     }
 
+    public void updateSummonedCard(String ID){
+        ImageIcon cardImage = new ImageIcon("src/main/java/gui/img/cards/"+ ID +".png");
+        this.summonedCard.setIcon(new ImageIcon(cardImage.getImage().getScaledInstance(
+                summonedCard.getWidth(), summonedCard.getHeight(), Image.SCALE_SMOOTH)));
+    }
 }
