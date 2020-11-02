@@ -10,7 +10,7 @@
     "ignoreManaNextTurn": null,
     "songCondition": null,
     "stoolenCard": null,
-    "cardName": null,
+    "cardName": "skip turn",
     "song": null
   },
   "41": {
@@ -118,7 +118,7 @@
     "healing": 0,
     "manaExtra": 0,
     "attackIncrease": 0,
-    "frozenTurn": false,
+    "frozenTurn": true,
     "ignoreManaNextTurn": false,
     "songCondition": "None",
     "stoolenCard": "Unknow Steal",

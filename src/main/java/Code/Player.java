@@ -110,6 +110,11 @@ public class Player {
             maxPower = true;
             counterMP = 0;
         }
+
+        else if (cardName.equals("Steal")){
+
+            ;
+        }
     }
 
 
@@ -138,6 +143,7 @@ public class Player {
 
             return false;
         }
+
         return false;
 
     }

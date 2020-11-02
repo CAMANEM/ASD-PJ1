@@ -218,6 +218,7 @@ public class GraphicController extends Observable implements ActionListener {
         }
 
         else if (selection == skipTurn){
+            System.out.println("skip");
             Card card = CardGetter.getCard("40");
             this.setChanged();
             this.notifyObservers(card);
@@ -251,7 +252,6 @@ public class GraphicController extends Observable implements ActionListener {
                         handgame[index].setEnabled(false);
                         flags[index] = false;
                         fullHand -= 1;
-                        System.out.println("Aqui" + cardVerification());
                         this.frame.updateSummonedCard(circularID);
                         this.setChanged();
                         this.notifyObservers(card);

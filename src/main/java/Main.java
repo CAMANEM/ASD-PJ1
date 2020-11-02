@@ -84,6 +84,12 @@ public class Main implements Observer {
                 this.graphics.closeProgram();
             }
 
+            else if (this.card.cardName.equals("Steal")){
+                this.card.stoolenCard = graphics.cardVerification();
+                this.client.sendMessage(CardGetter.getCardString(this.card));
+                playGame();
+            }
+
             //frozen turn
             else if (this.frozenTurn || this.card.frozenTurn){
 
@@ -146,12 +152,34 @@ public class Main implements Observer {
 
         else{
             this.card = (Card) arg;
-            Player.playMyTurn(this.card);
-            Player.regulateMaxPower();
-            this.client.sendMessage(CardGetter.getCardString(this.card));
-            playGame();
+            System.out.println("Se lee la carta");
+
+            if (card.cardName.equals("Steal")){
+                System.out.println("robo");
+                playStealCard();
+            }
+
+            else {
+                System.out.println("la jugada");
+                //Play selected cards
+                Player.playMyTurn(this.card);
+                Player.regulateMaxPower();
+                this.client.sendMessage(CardGetter.getCardString(this.card));
+                playGame();
+            }
         }
 
+    }
+
+    public void playStealCard(){
+
+        Player.playMyTurn(this.card);
+        Player.regulateMaxPower();
+        this.client.sendMessage(CardGetter.getCardString(this.card));
+        this.card = CardGetter.getCardfromMessage(this.server.finishTurn());
+        graphics.cardInsertion(Integer.parseInt(this.card.stoolenCard));
+        this.client.sendMessage(CardGetter.getCardString((CardGetter.getCard("40"))));
+        playGame();
     }
 
 
