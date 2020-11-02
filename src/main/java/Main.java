@@ -11,13 +11,14 @@ import javax.swing.*;
 
 /**This is the principal class, handles the communication between graphic code and logic code
  *
- *@version 1.1
+ *@version 1.2
  */
 public class Main implements Observer {
 
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
     private GraphicController graphics;
+    private boolean frozenTurn = false;
     private Server server;
     private Client client;
     private Card card;
@@ -52,18 +53,48 @@ public class Main implements Observer {
 
     /**
      * This method is called when players get connected
-     * and starts the turn-based game system.
+     * and starts the turn-based game system and after
+     * each play.
      *
      * Make the program focus on receive a message so,
      * the user will not be able to interact with the
      * program until the program receive a message.
+     *
+     * Also check that no player has lost.
      */
     public void playGame(){
 
         this.card = CardGetter.getCardfromMessage(this.server.finishTurn());
-        Player.opponentPlay(this.card);
-        this.graphics.updateStats(Integer.toString(Player.getLife()), Integer.toString(Player.getMana()));
-        System.out.println("recibió un mensaje, este es su turno");
+
+        //Game Won
+        if (this.card.type.equals("opponent defeated")){
+            JOptionPane.showMessageDialog(null, "Congratulations! You Win!!");
+            this.graphics.closeProgram();
+        }
+        else {
+            //it executes the opponent's move
+            this.frozenTurn = Player.opponentPlay(this.card);
+            this.graphics.updateStats(Integer.toString(Player.getLife()), Integer.toString(Player.getMana()));
+
+            //Game Lost
+            if (Player.getLife() <= 0) {
+                this.card = CardGetter.getCard("41");
+                this.client.sendMessage(CardGetter.getCardString(this.card));
+                JOptionPane.showMessageDialog(null, "You lose");
+                this.graphics.closeProgram();
+            }
+
+            //frozen turn
+            else if (this.frozenTurn || this.card.frozenTurn){
+
+                logger.log(Level.WARNING, "You lost your turn");
+                this.frozenTurn = false;
+                this.card = CardGetter.getCard("40");
+                this.client.sendMessage(CardGetter.getCardString(this.card));
+                playGame();
+
+            }
+        }
     }
 
 
@@ -116,6 +147,7 @@ public class Main implements Observer {
         else{
             this.card = (Card) arg;
             Player.playMyTurn(this.card);
+            Player.regulateMaxPower();
             this.client.sendMessage(CardGetter.getCardString(this.card));
             playGame();
         }

@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,12 +9,12 @@ import java.awt.*;
  * methods to change between menu canvas and game
  * canvas
  *
- * @version 1.1
+ * @version 1.2
  */
 class MyFrame extends JFrame {
 
 
-    private CanvasMenu myCanvas = new CanvasMenu();
+    private CanvasMenu menu_canvas = new CanvasMenu();
     private CanvasGame ingame_canvas = new CanvasGame();
 
 
@@ -38,14 +39,15 @@ class MyFrame extends JFrame {
     /**
      * Set the canvasMenu on the frame and call a canvasMenu method
      * to the add the buttons monitored by the GraphicController.
+     * This method is only used whe the program starts.
      *
      * @param btn_anfitrion
      * @param btn_invitado
      */
     public void goMenu(JButton btn_anfitrion, JButton btn_invitado){
 
-        this.add(myCanvas);
-        this.myCanvas.putButtons(btn_anfitrion, btn_invitado);
+        this.add(menu_canvas);
+        this.menu_canvas.putButtons(btn_anfitrion, btn_invitado);
     }
 
 
@@ -54,7 +56,7 @@ class MyFrame extends JFrame {
      * sets the gameCanvas on the frame
      */
     public void goGame(JButton[] handgame, JButton skipTurn){
-        this.remove(myCanvas);
+        this.remove(menu_canvas);
         this.add(ingame_canvas);
         this.ingame_canvas.putButtons(handgame, skipTurn);
         this.repaint();
@@ -68,8 +70,10 @@ class MyFrame extends JFrame {
 
     public void updateSummonedCard(String ID){
         this.ingame_canvas.updateSummonedCard(ID);
-        this.invalidate();
-        this.validate();
-        this.repaint();
+
+    }
+
+    public void closePorgram(){
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 }

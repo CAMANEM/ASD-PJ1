@@ -11,7 +11,6 @@ import Code.Player;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Observable;
@@ -24,7 +23,7 @@ import javax.swing.*;
  * The Main use only this class directly to make any
  * change in the graphic interface.
  *
- * @version 1.0
+ * @version 1.1
  */
 public class GraphicController extends Observable implements ActionListener {
 
@@ -216,9 +215,13 @@ public class GraphicController extends Observable implements ActionListener {
 
                     String circularID = circular.getID(index);
                     Card card = CardGetter.getCard(circularID);
-                    //Check that the player has enough mana for the summon
-                    if(card.manaCost <= Player.getMana()) {
 
+                    //Check that the player has enough mana for the summon
+                    if (card.manaCost <= Player.getMana() || Player.getMaxPower()) {
+
+                        if (Player.getCounterMP() < 3){
+                            card.frozenTurn = Player.getMaxPower();
+                        }
                         handgame[index].setEnabled(false);
                         flags[index] = false;
                         fullHand -= 1;
@@ -239,5 +242,10 @@ public class GraphicController extends Observable implements ActionListener {
 
     public void updateStats(String life, String mana){
         this.frame.updateStats(life, mana);
+    }
+
+
+    public void closeProgram(){
+        this.frame.closePorgram();
     }
 }

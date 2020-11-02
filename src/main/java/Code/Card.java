@@ -7,7 +7,7 @@ public class Card {
     public int healing;
     public int manaExtra;
     public int attackIncrease;
-    public int summonsNextTurn;
+    public boolean frozenTurn;
     public boolean ignoreManaNextTurn;
     public String songCondition;
     public String stoolenCard;
