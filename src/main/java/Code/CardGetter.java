@@ -72,6 +72,7 @@ public class CardGetter {
 
     /**
      * It converts a Card Object into a String to send it as a message.
+     *
      * @param card
      * @return cardString
      */
@@ -88,7 +89,8 @@ public class CardGetter {
 
 
     /**
-     * It converts a received message into a Card object
+     * It converts a received message into a Card object.
+     *
      * @param message
      * @return card
      */

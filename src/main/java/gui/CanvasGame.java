@@ -46,13 +46,18 @@ public class CanvasGame extends JPanel {
         summonedCard.setBounds(600, 50, 270, 350);
         life.setFont(new Font("Arial", Font.PLAIN, 30));
         mana.setFont(new Font("Arial", Font.PLAIN, 30));
-        //updateSummonedCard("12");
         this.add(summonedCard);
         this.add(life);
         this.add(mana);
     }
 
 
+    /**
+     * Update the life and mana points of the player in the GUI.
+     *
+     * @param life
+     * @param mana
+     */
     public void updateStats(String life, String mana){
         this.life.setText(life);
         this.mana.setText(mana);
@@ -86,6 +91,12 @@ public class CanvasGame extends JPanel {
         }*/
     }
 
+    /**
+     * Updates the card image of the last card summoned by the
+     * player.
+     *
+     * @param ID of the card summoned.
+     */
     public void updateSummonedCard(String ID){
         ImageIcon cardImage = new ImageIcon("src/main/java/gui/img/cards/"+ ID +".png");
         this.summonedCard.setIcon(new ImageIcon(cardImage.getImage().getScaledInstance(

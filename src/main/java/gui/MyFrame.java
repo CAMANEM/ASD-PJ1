@@ -64,15 +64,30 @@ class MyFrame extends JFrame {
     }
 
 
+    /**
+     * Update the life and mana points of the player in the GUI.
+     *
+     * @param life
+     * @param mana
+     */
     public void updateStats(String life, String mana){
         this.ingame_canvas.updateStats(life, mana);
     }
 
+    /**
+     * Updates the card image of the last card summoned by the
+     * player.
+     *
+     * @param ID of the card summoned
+     */
     public void updateSummonedCard(String ID){
         this.ingame_canvas.updateSummonedCard(ID);
 
     }
 
+    /**
+     * Closes the program when the game is over
+     */
     public void closePorgram(){
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }

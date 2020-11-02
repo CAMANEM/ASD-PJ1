@@ -24,7 +24,7 @@ import javax.swing.*;
  * The Main use only this class directly to make any
  * change in the graphic interface.
  *
- * @version 1.1
+ * @version 1.2
  */
 public class GraphicController extends Observable implements ActionListener {
 
@@ -74,6 +74,10 @@ public class GraphicController extends Observable implements ActionListener {
         return flags;
     }
 
+
+    /**
+     * It creates the game buttons for the cards, deck and skip.
+     */
     public void createGameButtons() {
 
         skipTurn = new JButton("skip turn");
@@ -139,11 +143,22 @@ public class GraphicController extends Observable implements ActionListener {
         btn_invitado.addActionListener(this);
     }
 
+
+    /**
+     * @return a random integer betweeen 0 and 9 representing
+     * the cards in the game hand.
+     */
     public int randomChoice(){
         Random random = new Random();
         return random.nextInt(9);
     }
 
+    /**
+     * It select randomly the card stolen by game hand
+     * removes it from the player hand
+     *
+     * @return The cards stolen by the opponent.
+     */
     public String cardVerification(){
         boolean pointer = false;
         int aux = 0;
@@ -161,6 +176,13 @@ public class GraphicController extends Observable implements ActionListener {
         return circular.getID(aux);
     }
 
+
+    /**
+     * Add a card to the game hand if it is not full.
+     *
+     * @param ID of the card should be added from deck
+     *           or opponent hand.
+     */
     public void cardInsertion(int ID){
         if (fullHand < 10 && newNode.stackSize() > 0) {
 
@@ -218,7 +240,6 @@ public class GraphicController extends Observable implements ActionListener {
         }
 
         else if (selection == skipTurn){
-            System.out.println("skip");
             Card card = CardGetter.getCard("40");
             this.setChanged();
             this.notifyObservers(card);
@@ -271,11 +292,20 @@ public class GraphicController extends Observable implements ActionListener {
         }
     }
 
+
+    /**
+     * Update the life and mana points of the player in the GUI.
+     *
+     * @param life
+     * @param mana
+     */
     public void updateStats(String life, String mana){
         this.frame.updateStats(life, mana);
     }
 
-
+    /**
+     * Closes the program when the game is over
+     */
     public void closeProgram(){
         this.frame.closePorgram();
     }

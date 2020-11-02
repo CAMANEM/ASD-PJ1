@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**This is the principal class, handles the communication between graphic code and logic code
  *
- *@version 1.2
+ *@version 1.3
  */
 public class Main implements Observer {
 
@@ -39,9 +39,7 @@ public class Main implements Observer {
      * This constructor calls the basic methods required to open the menu window
      */
     public Main() {
-        //this.card = CardGetter.getCard("6"); //method to get the card object from an ID(when selected in hand)
-        //String mensaje = CardGetter.getCardString(this.card); //method to convert card to string to sent to the other player
-        //this.card = CardGetter.getCardfromMessage(mensaje); //method to convert a received message to a card Object
+
         //System.out.println(this.card.healing);
 
         this.graphics = new GraphicController();
@@ -129,7 +127,6 @@ public class Main implements Observer {
             String[] guestIP = ((String) this.server.finishTurn()).split(":"); //host - port
             this.client = new Client(guestIP[0], guestIP[1]);
             logger.log(Level.INFO, "Is your turn, the host does the first play");
-            //playGame();
         }
 
         else if(arg.equals("guest")){
@@ -151,17 +148,17 @@ public class Main implements Observer {
         }
 
         else{
-            this.card = (Card) arg;
-            System.out.println("Se lee la carta");
 
+            this.card = (Card) arg;
+
+            //Executes steal protocol
             if (card.cardName.equals("Steal")){
-                System.out.println("robo");
                 playStealCard();
             }
 
             else {
-                System.out.println("la jugada");
-                //Play selected cards
+
+                //Play selected card
                 Player.playMyTurn(this.card);
                 Player.regulateMaxPower();
                 this.client.sendMessage(CardGetter.getCardString(this.card));
@@ -171,6 +168,11 @@ public class Main implements Observer {
 
     }
 
+
+    /**
+     * Executes a specific protocol when the player summon
+     * a Steal card.
+     */
     public void playStealCard(){
 
         Player.playMyTurn(this.card);
