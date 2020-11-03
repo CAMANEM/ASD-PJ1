@@ -2,7 +2,7 @@ package gui;
 
 import Code.Card;
 import Code.CardGetter;
-import Code.List.Circular.CardActions;
+import Code.List.CircularLinked.CardActions;
 import Code.List.CircularLinked.Circular;
 import Code.List.Stack.Stack;
 import Code.List.Stack.RandomCards;
@@ -11,6 +11,7 @@ import Code.Player;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Observable;
@@ -120,7 +121,6 @@ public class GraphicController extends Observable implements ActionListener {
 
             posx += 120;
         }
-        //circular.showCircular();
 
     }
 
@@ -138,6 +138,52 @@ public class GraphicController extends Observable implements ActionListener {
         btn_anfitrion.addActionListener(this);
         btn_invitado.addActionListener(this);
     }
+
+    public int randomChoice(){
+        Random random = new Random();
+        return random.nextInt(9);
+    }
+
+    public String cardVerification(){
+        boolean pointer = false;
+        int aux = 0;
+        while(pointer == false){
+            int poss = randomChoice();
+            if(controller.getFlagList()[poss]){
+                aux = poss;
+
+                break;
+            }
+        }
+        handgame[aux].setEnabled(false);
+        flags[aux] = false;
+        fullHand -= 1;
+        return circular.getID(aux);
+    }
+
+    public void cardInsertion(int ID){
+        if (fullHand < 10 && newNode.stackSize() > 0) {
+
+            controller.setFlagList(flags);
+            position = controller.SiteAnalysis();
+
+            ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/" + ID + ".png");
+            handgame[position].setIcon(new ImageIcon(buttonImage.getImage().
+                    getScaledInstance(handgame[position].getWidth(), handgame[position].getHeight(), Image.SCALE_SMOOTH)));
+
+            handgame[position].setEnabled(true);
+            controller.getFlagList();
+            ++fullHand;
+
+            circular.modify(position, String.valueOf(ID));
+
+        }else{
+            logger.log(Level.WARNING, "The hand game is full of the stack is out");
+        }
+
+    }
+
+
 
 
     /**
@@ -181,34 +227,14 @@ public class GraphicController extends Observable implements ActionListener {
         else if (selection == handgame[10]){
 
 
-            if (fullHand < 10 && newNode.stackSize() > 0){
+            cardInsertion(newNode.delete());
 
-                int ID = newNode.delete();
-                //this.setChanged();
-                //this.notifyObservers("deck");
-                //this.clearChanged();
-                controller.setFlagList(flags);
-                position = controller.SiteAnalysis();
-
-                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+ ID +".png");
-                handgame[position].setIcon(new ImageIcon(buttonImage.getImage().
-                        getScaledInstance(handgame[position].getWidth(), handgame[position].getHeight(), Image.SCALE_SMOOTH)));
-
-                handgame[position].setEnabled(true);
-                controller.getFlagList();
-                ++fullHand;
-
-                circular.modify(position, String.valueOf(ID));
-
-
-            }else{
-                logger.log(Level.WARNING, "The hand game is full of the stack is out");
-            }
         }
 
         else {
 
             //Searches for the button pressed
+
             for(int index = 0; index <= 9; ++index){
 
                 if (selection == handgame[index]){
@@ -225,11 +251,14 @@ public class GraphicController extends Observable implements ActionListener {
                         handgame[index].setEnabled(false);
                         flags[index] = false;
                         fullHand -= 1;
+                        System.out.println("Aqui" + cardVerification());
                         this.frame.updateSummonedCard(circularID);
                         this.setChanged();
                         this.notifyObservers(card);
                         this.clearChanged();
+
                     }
+
 
                     else{
                         logger.log(Level.WARNING, "You don´t have enough mana for this summon");
@@ -237,6 +266,8 @@ public class GraphicController extends Observable implements ActionListener {
                     break;
                 }
             }
+
+
         }
     }
 

@@ -1,152 +1,30 @@
-nov 02, 2020 1:07:12 AM Code.Server finishTurn
+nov 03, 2020 9:28:24 AM Code.Server finishTurn
 INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:07:30 AM Code.Server finishTurn
+nov 03, 2020 9:28:35 AM Code.Server finishTurn
 INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:07:30 AM Main update
+nov 03, 2020 9:28:35 AM Main update
 INFORMACIÓN: Is your turn, the host does the first play
-nov 02, 2020 1:07:39 AM Code.Client sendMessage
+nov 03, 2020 9:28:41 AM Code.Client sendMessage
 INFORMACIÓN: Sending message...
-nov 02, 2020 1:07:39 AM Code.Client sendMessage
+nov 03, 2020 9:28:41 AM Code.Client sendMessage
 INFORMACIÓN: Message sent
-nov 02, 2020 1:07:39 AM Code.Server finishTurn
+nov 03, 2020 9:28:41 AM Code.Server finishTurn
 INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:07:40 AM Code.Server finishTurn
+nov 03, 2020 9:28:42 AM Code.Server finishTurn
 INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:07:41 AM Code.Client sendMessage
+nov 03, 2020 9:28:48 AM Code.Client sendMessage
 INFORMACIÓN: Sending message...
-nov 02, 2020 1:07:41 AM Code.Client sendMessage
+nov 03, 2020 9:28:48 AM Code.Client sendMessage
 INFORMACIÓN: Message sent
-nov 02, 2020 1:07:41 AM Code.Server finishTurn
+nov 03, 2020 9:28:48 AM Code.Server finishTurn
 INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:07:41 AM Code.Server finishTurn
+nov 03, 2020 9:28:52 AM Code.Server finishTurn
 INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:07:42 AM Code.Client sendMessage
+nov 03, 2020 9:29:02 AM Code.Client sendMessage
 INFORMACIÓN: Sending message...
-nov 02, 2020 1:07:42 AM Code.Client sendMessage
+nov 03, 2020 9:29:02 AM Code.Client sendMessage
 INFORMACIÓN: Message sent
-nov 02, 2020 1:07:42 AM Code.Server finishTurn
+nov 03, 2020 9:29:02 AM Code.Server finishTurn
 INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:07:43 AM Code.Server finishTurn
+nov 03, 2020 9:29:02 AM Code.Server finishTurn
 INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:07:46 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:07:46 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:07:46 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:07:51 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:08:00 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:08:00 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:08:00 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:08:00 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:08:01 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:08:01 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:08:01 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:08:01 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:08:02 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:08:02 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:08:02 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:08:15 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:08:26 AM gui.GraphicController actionPerformed
-ADVERTENCIA: The hand game is full of the stack is out
-nov 02, 2020 1:08:33 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:08:33 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:08:33 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:08:41 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:08:44 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:08:44 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:08:44 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:08:46 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:08:51 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:08:51 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:08:51 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:08:55 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:10 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:10 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:09:10 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:09:11 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:13 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:13 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:09:13 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:09:25 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:25 AM Main playGame
-ADVERTENCIA: You lost your turn
-nov 02, 2020 1:09:25 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:25 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:09:25 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:09:25 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:25 AM Main playGame
-ADVERTENCIA: You lost your turn
-nov 02, 2020 1:09:25 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:25 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:09:25 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:09:30 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:33 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:33 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:09:33 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:09:38 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:39 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:39 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:09:39 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:09:41 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:43 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:43 AM Code.Client sendMessage
-INFORMACIÓN: Message sent
-nov 02, 2020 1:09:43 AM Code.Server finishTurn
-INFORMACIÓN: Waiting for a message
-nov 02, 2020 1:09:45 AM Code.Server finishTurn
-INFORMACIÓN: Incoming message detected
-nov 02, 2020 1:09:45 AM Code.Client sendMessage
-INFORMACIÓN: Sending message...
-nov 02, 2020 1:09:45 AM Code.Client sendMessage
-INFORMACIÓN: Message sent

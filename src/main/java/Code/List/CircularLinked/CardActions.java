@@ -1,4 +1,4 @@
-package Code.List.Circular;
+package Code.List.CircularLinked;
 
 
 /**
@@ -26,6 +26,7 @@ public class CardActions {
      * @return b
      */
     public boolean[] getFlagList() {
+
         return flagList;
     }
 
