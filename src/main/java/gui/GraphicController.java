@@ -54,6 +54,8 @@ public class GraphicController extends Observable implements ActionListener {
     Stack newNode = new Stack();
     Circular circular = new Circular();
 
+    boolean justCard = true;
+
     private int position;
     private int fullHand = 4;
 
@@ -244,12 +246,13 @@ public class GraphicController extends Observable implements ActionListener {
             this.setChanged();
             this.notifyObservers(card);
             this.clearChanged();
+            justCard = true;
         }
 
-        else if (selection == handgame[10]){
-
-
+        else if (selection == handgame[10] && justCard){
             cardInsertion(newNode.delete());
+            justCard = false;
+
 
         }
 
@@ -277,6 +280,7 @@ public class GraphicController extends Observable implements ActionListener {
                         this.setChanged();
                         this.notifyObservers(card);
                         this.clearChanged();
+                        justCard = true;
 
                     }
 

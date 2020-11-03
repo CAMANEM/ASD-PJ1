@@ -29,6 +29,6 @@ public class RandomCards {
      */
     public int RandomDeck(){
         Random random = new Random();
-        return random.nextInt(18);
+        return random.nextInt(19);
     }
 }

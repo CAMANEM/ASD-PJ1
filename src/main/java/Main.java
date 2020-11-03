@@ -64,6 +64,7 @@ public class Main implements Observer {
 
         this.card = CardGetter.getCardfromMessage(this.server.finishTurn());
 
+
         //Game Won
         if (this.card.type.equals("opponent defeated")){
             JOptionPane.showMessageDialog(null, "Congratulations! You Win!!");
