@@ -17,7 +17,7 @@ public class RandomCards {
         int hand [] = {0, 0, 0, 0};
         Random random = new Random();
         for (int i = 0; i < 4; i++){
-            hand[i] = random.nextInt(32);
+            hand[i] = random.nextInt(40);
         }
         return hand;
     }
@@ -29,6 +29,6 @@ public class RandomCards {
      */
     public int RandomDeck(){
         Random random = new Random();
-        return random.nextInt(32);
+        return random.nextInt(40);
     }
 }

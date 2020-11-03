@@ -49,7 +49,6 @@ public class Main implements Observer {
         this.graphics.addObserver(this);
         this.server = new Server();
         loggerConfig();
-
     }
 
 

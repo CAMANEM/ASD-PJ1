@@ -1,6 +1,10 @@
 package Code;
 
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
 /**
  * This class represents the life and mana of the player
  * and his methods controls the changes made by other
@@ -44,15 +48,28 @@ public class Player {
 
         if(cardType.equals("Minion")) {
 
-            ;
+            if (secret.equals("Devastation")) {
+                playSound("33");
+                secret = "";
+            }
+            else if (secret.equals("Claw Grinding")){
+                mana += 100;
+                secret = "";
+            }
+
         }
         else if (cardType.equals("Spell")){
 
+            if (secret.equals("Discover Magic")){
+                playSound("37");
+            }
             playSpell(card);
         }
         else if(cardType.equals("skip turn")){
 
-            ;
+            if (secret.equals("Magic Circle")){
+                playSound("35");
+            }
         }
 
         else if (cardType.equals("Secret")){
@@ -98,21 +115,37 @@ public class Player {
 
             card = counterSecret(card);
             life -= card.damage;
+            if(secret.equals("Death")){
+                playSound("36");
+            }
             return false;
         }
 
         else if (cardType.equals("Spell")){
+            if (secret.equals("Golem of Mana")){
+                mana += card.manaCost;
+                regulateMana();
+                secret = "";
+            }
             return opponentSpell(card);
         }
 
         else if(cardType.equals("skip turn")){
 
+            if (secret.equals("Storm")){
+                playSound("34");
+            }
             return false;
         }
 
-        else {
-            return false;
+        else if(cardType.equals("Secret")){
+            if (secret.equals("Storm")){
+                playSound("34");
+            }
         }
+
+        return false;
+
 
     }
 
@@ -172,6 +205,12 @@ public class Player {
             enhanceSecret(card);
             regulateLife();
         }
+        else if (cardName.equals("Increased Damage")){
+            if (secret.equals("Devastation")){
+                playSound("33");
+                secret = "";
+            }
+        }
     }
 
 
@@ -189,26 +228,41 @@ public class Player {
 
         if (card_name.equals("Freeze")){
 
+            if (secret.equals("Condense")){
+                playSound("32");
+            }
             return true;
         }
 
         else if (card_name.equals("Health")){
 
-            ;
+            if (secret.equals("Storm")){
+                playSound("34");
+            }
         }
 
         else if (card_name.equals("Max Power")){
 
-            return false;
+            if (secret.equals("Storm")){
+                playSound("34");
+            }
         }
 
         else if (card_name.equals("Increased Damage")){
 
             life -= life * 0.50;
+            if(secret.equals("Death")){
+                playSound("36");
+            }
+
+
         }
 
         else if (card_name.equals("Mana Leak")){
 
+            if (secret.equals("Storm")){
+                playSound("34");
+            }
             mana = 0;
         }
 
@@ -276,4 +330,17 @@ public class Player {
         }
     }
 
+    public static void playSound(String sound){
+        secret = "";
+        try {
+            File file = new File("src/main/java/gui/sounds/" + sound + ".wav");
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(file));
+            clip.start();
+        }
+        catch (Exception e){
+
+            System.out.println("Agregar un logger" + e);
+        }
+    }
 }

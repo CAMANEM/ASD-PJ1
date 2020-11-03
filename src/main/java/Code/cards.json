@@ -338,5 +338,85 @@
     "stoolenCard": "None",
     "cardName": "Magic Stones of Life",
     "song": "None"
+  },
+  "32": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 100,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Condense",
+    "song": "32"
+  },
+  "33": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 100,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Devastation",
+    "song": "33"
+  },
+  "34": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 75,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Storm",
+    "song": "34"
+  },
+  "35": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 75,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Magic Circle",
+    "song": "35"
+  },
+  "36": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 50,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Death",
+    "song": "36"
+  },
+  "37": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 25,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Discover Magic",
+    "song": "37"
+  },
+  "38": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 0,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Claw Grinding",
+    "song": "38"
+  },
+  "39":{
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 100,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Golem of Mana",
+    "song": "None"
   }
 }
