@@ -208,5 +208,135 @@
     "stoolenCard": "None",
     "cardName": "Werewolf",
     "song": "None"
+  },
+  "19": {
+    "type": "Minion",
+    "damage": 350,
+    "manaCost": 300,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Bear Hunter",
+    "song": "None"
+  },
+  "20": {
+    "type": "Minion",
+    "damage": 370,
+    "manaCost": 500,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Behemoth",
+    "song": "None"
+  },
+  "21": {
+    "type": "Minion",
+    "damage": 450,
+    "manaCost": 700,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Giant Werewolf",
+    "song": "None"
+  },
+  "22": {
+    "type": "Minion",
+    "damage": 700,
+    "manaCost": 800,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Grim Reaper",
+    "song": "None"
+  },
+  "23": {
+    "type": "Minion",
+    "damage": 200,
+    "manaCost": 200,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "HellHound",
+    "song": "None"
+  },
+  "24": {
+    "type": "Minion",
+    "damage": 600,
+    "manaCost": 700,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Leviathan",
+    "song": "None"
+  },
+  "25": {
+    "type": "Minion",
+    "damage": 400,
+    "manaCost": 400,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Lightning Mage",
+    "song": "None"
+  },
+  "26": {
+    "type": "Minion",
+    "damage": 150,
+    "manaCost": 200,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Mandrake",
+    "song": "None"
+  },
+  "27": {
+    "type": "Minion",
+    "damage": 200,
+    "manaCost": 200,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Reanimated Corpse",
+    "song": "None"
+  },
+  "28": {
+    "type": "Minion",
+    "damage": 200,
+    "manaCost": 200,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Swamp Vampire",
+    "song": "None"
+  },
+  "29": {
+    "type": "Minion",
+    "damage": 400,
+    "manaCost": 600,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Titanoboa",
+    "song": "None"
+  },
+  "30": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 300,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Claw Break",
+    "song": "None"
+  },
+  "31": {
+    "type": "Secret",
+    "damage": 0,
+    "manaCost": 100,
+    "healing": 0,
+    "frozenTurn": false,
+    "stoolenCard": "None",
+    "cardName": "Magic Stones of Life",
+    "song": "None"
   }
 }

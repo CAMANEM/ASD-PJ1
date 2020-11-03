@@ -250,9 +250,11 @@ public class GraphicController extends Observable implements ActionListener {
         }
 
         else if (selection == handgame[10] && justCard){
-            cardInsertion(newNode.delete());
-            justCard = false;
 
+            if (fullHand < 10 && newNode.stackSize() > 0) {
+                cardInsertion(newNode.delete());
+                justCard = false;
+            }
 
         }
 

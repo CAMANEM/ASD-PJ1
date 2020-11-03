@@ -14,12 +14,15 @@ public class Player {
     private static int mana;
     private static boolean maxPower = false;
     private static int counterMP;
+    private static String secret;
 
 
     public static void reset(){
 
         life = 1000;
         mana = 200;
+        secret = "";
+
     }
 
 
@@ -50,6 +53,11 @@ public class Player {
         else if(cardType.equals("skip turn")){
 
             ;
+        }
+
+        else if (cardType.equals("Secret")){
+
+            secret = card.cardName;
         }
     }
 
@@ -88,6 +96,7 @@ public class Player {
 
         if (cardType.equals("Minion")){
 
+            card = counterSecret(card);
             life -= card.damage;
             return false;
         }
@@ -141,6 +150,7 @@ public class Player {
         else if (cardName.equals("Health")){
 
             life += card.healing;
+            enhanceSecret(card);
             regulateLife();
         }
 
@@ -158,6 +168,8 @@ public class Player {
         else if (cardName.equals("Max Health")){
 
             life += life * 0.50;
+            card.healing = (int) (life * 0.50);
+            enhanceSecret(card);
             regulateLife();
         }
     }
@@ -202,6 +214,25 @@ public class Player {
 
         return false;
 
+    }
+
+
+    private static Card counterSecret(Card card){
+
+        if (secret.equals("Claw Break") && card.type.equals("Minion")){
+            card.damage = (int) (card.damage * 0.50);
+            secret = "";
+        }
+        return card;
+    }
+
+    private static void enhanceSecret(Card card){
+
+        if (secret.equals("Magic Stones of Mana")){
+
+            mana += card.healing;
+            secret = "";
+        }
     }
 
 
