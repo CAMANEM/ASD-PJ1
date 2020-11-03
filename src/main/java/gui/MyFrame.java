@@ -28,11 +28,15 @@ class MyFrame extends JFrame {
         int windowWidth = windowSize.width;
 
         setTitle("Tecnologico de Costa Rica");
-        setBounds(windowWidth/3, windowHeight/6, 1300, 800);
+        setBounds(windowWidth/3, windowHeight/6, 1600, 800);
         setResizable(false);
 
         Image myIcon = myWindow.getImage("src/cr/ac/tec/adspj1/graphics/img/CR.png");
         setIconImage(myIcon);
+    }
+
+    public void history(String data){
+        ingame_canvas.history(data);
     }
 
 

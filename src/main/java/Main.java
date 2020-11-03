@@ -68,6 +68,7 @@ public class Main implements Observer {
         this.card = CardGetter.getCardfromMessage(this.server.finishTurn());
         doubleList.insert("Opponent: "+this.card.cardName);
         doubleList.showDouble();
+        graphics.setHistory("Opponent: "+this.card.cardName);
 
 
         //Game Won
@@ -158,6 +159,7 @@ public class Main implements Observer {
             this.card = (Card) arg;
             doubleList.insert("Player: "+this.card.cardName);
             doubleList.showDouble();
+            graphics.setHistory("Player: "+this.card.cardName);
 
             //Executes steal protocol
             if (card.cardName.equals("Steal")){

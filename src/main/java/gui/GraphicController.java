@@ -71,6 +71,10 @@ public class GraphicController extends Observable implements ActionListener {
         controller.setFlagList(flags);
 
     }
+    public void setHistory(String data){
+        frame.history(data);
+
+    }
 
     public boolean[] getFlags() {
         return flags;

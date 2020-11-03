@@ -14,6 +14,7 @@ public class CanvasGame extends JPanel {
     private JLabel life = new JLabel("1000");
     private JLabel mana = new JLabel("200");
     private JLabel summonedCard = new JLabel();
+    JTextArea area = new JTextArea();
 
 
     /**
@@ -25,7 +26,7 @@ public class CanvasGame extends JPanel {
         Image imagen;
         try{
             imagen = ImageIO.read(new File("src/main/java/gui/img/general/WoodenTable.jpg"));
-            g.drawImage(imagen,0,0, 1300,800, null);
+            g.drawImage(imagen,0,0, 1600,800, null);
 
         }
         catch (IOException e){
@@ -33,11 +34,19 @@ public class CanvasGame extends JPanel {
         }
     }
 
+    public void history(String data){
+        area.append(data + "\n");
+
+    }
+
 
     /**
      * Add the labels with the life and mana to the canvas
      */
     public CanvasGame() {
+        area.setBounds(1310, 100, 260, 500);
+        area.setEditable(false);
+        this.add(area);
 
         this.setLayout(null);
 
