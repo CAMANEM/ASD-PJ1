@@ -15,6 +15,8 @@ public class CanvasGame extends JPanel {
     private JLabel mana = new JLabel("200");
     private JLabel summonedCard = new JLabel();
     JTextArea area = new JTextArea();
+    JScrollPane scrollPane = new JScrollPane(area);
+
 
 
     /**
@@ -34,6 +36,11 @@ public class CanvasGame extends JPanel {
         }
     }
 
+    /**
+     *It gets part of the information that is going to be
+     * in the record of activity
+     * @param data string data from MyFrame
+     */
     public void history(String data){
         area.append(data + "\n");
 
@@ -44,9 +51,16 @@ public class CanvasGame extends JPanel {
      * Add the labels with the life and mana to the canvas
      */
     public CanvasGame() {
-        area.setBounds(1310, 100, 260, 500);
-        area.setEditable(false);
-        this.add(area);
+
+
+        scrollPane.setBounds(1310, 100, 260, 500);
+        //area.setEditable(true);
+
+
+        this.add(scrollPane);
+        //this.add(area);
+
+
 
         this.setLayout(null);
 

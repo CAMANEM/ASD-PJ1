@@ -35,7 +35,13 @@ class MyFrame extends JFrame {
         setIconImage(myIcon);
     }
 
+    /**
+     * It gets part of the information that is going to be
+     * in the record of activity
+     * @param data string data from GraphicController
+     */
     public void history(String data){
+
         ingame_canvas.history(data);
     }
 

@@ -71,6 +71,12 @@ public class GraphicController extends Observable implements ActionListener {
         controller.setFlagList(flags);
 
     }
+
+    /**
+     * It gets part of the information that is going to be
+     * in the record of activity
+     * @param data string data from the main class
+     */
     public void setHistory(String data){
         frame.history(data);
 

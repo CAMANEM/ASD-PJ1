@@ -27,7 +27,7 @@ class CanvasMenu extends JPanel{
         Image imagen;
         try{
             imagen = ImageIO.read(new File("src/main/java/gui/img/general/cardswallpaper.jpg"));
-            g.drawImage(imagen,0,0, 1300,800, null);
+            g.drawImage(imagen,0,0, 1600,800, null);
         }
         catch (IOException e){
             logger.log(Level.SEVERE, "Can´t open the ");
