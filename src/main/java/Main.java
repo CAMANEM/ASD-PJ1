@@ -1,5 +1,6 @@
 import Code.*;
 import gui.GraphicController;
+import Code.List.DoubleLinked.*;
 
 import java.util.Observable;
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class Main implements Observer {
     private Server server;
     private Client client;
     private Card card;
+    DoubleList doubleList = new DoubleList();;
+
 
 
     /**
@@ -46,6 +49,7 @@ public class Main implements Observer {
         this.graphics.addObserver(this);
         this.server = new Server();
         loggerConfig();
+
     }
 
 
@@ -63,6 +67,8 @@ public class Main implements Observer {
     public void playGame(){
 
         this.card = CardGetter.getCardfromMessage(this.server.finishTurn());
+        doubleList.insert("Opponent: "+this.card.cardName);
+        doubleList.showDouble();
 
 
         //Game Won
@@ -151,6 +157,8 @@ public class Main implements Observer {
         else{
 
             this.card = (Card) arg;
+            doubleList.insert("Player: "+this.card.cardName);
+            doubleList.showDouble();
 
             //Executes steal protocol
             if (card.cardName.equals("Steal")){
