@@ -27,16 +27,22 @@ class CanvasMenu extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        g.drawString("Default Data", 125, 125);
         Image imagen;
         try{
             imagen = ImageIO.read(new File("src/main/java/gui/img/general/ArmyGreen.jpg"));
             g.drawImage(imagen,0,0, 1600,800, null);
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("src/main/java/gui/img/general/Russeldexter.ttf"))).deriveFont(Font.PLAIN, 50);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+
+            g.setFont(font);
         }
-        catch (IOException e){
-            logger.log(Level.SEVERE, "Can´t open the ");
-            System.out.println("No se logró acceder a la imagen en la ruta especificada");
+        catch (Exception e){
+            logger.log(Level.SEVERE, "Can´t open the image file");
         }
+
+        g.setColor(Color.cyan);
+        g.drawString("Default Data", 600    , 125);
     }
 
     /**
@@ -56,19 +62,6 @@ class CanvasMenu extends JPanel{
      * @param invitado
      */
     public void putButtons(JButton anfitrion, JButton invitado){
-
-        /*try {
-            font = Font.createFont(Font.TRUETYPE_FONT,new File("src/main/java/gui/img/general/Russeldexter.ttf")).deriveFont(50f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/gui/img/general/Russeldexter.ttf")));
-
-        } catch (IOException | FontFormatException e) {
-
-        }*/
-
-
-        //title.setBounds(400, 100, 230, 50);
-        //title.setFont(font);
 
         anfitrion.setBounds(250,200, 230, 50);
         invitado.setBounds(210, 300, 310, 50);
