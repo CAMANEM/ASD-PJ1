@@ -13,6 +13,10 @@ import java.io.*;
 class CanvasMenu extends JPanel{
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
+    private JLabel title = new JLabel("Monster TECG");
+    private Font font;
+
+
 
 
     /**
@@ -26,7 +30,7 @@ class CanvasMenu extends JPanel{
         g.drawString("Default Data", 125, 125);
         Image imagen;
         try{
-            imagen = ImageIO.read(new File("src/main/java/gui/img/general/cardswallpaper.jpg"));
+            imagen = ImageIO.read(new File("src/main/java/gui/img/general/ArmyGreen.jpg"));
             g.drawImage(imagen,0,0, 1600,800, null);
         }
         catch (IOException e){
@@ -41,6 +45,8 @@ class CanvasMenu extends JPanel{
     public CanvasMenu(){
 
         this.setLayout(null);
+
+
     }
 
     /**
@@ -51,11 +57,25 @@ class CanvasMenu extends JPanel{
      */
     public void putButtons(JButton anfitrion, JButton invitado){
 
+        /*try {
+            font = Font.createFont(Font.TRUETYPE_FONT,new File("src/main/java/gui/img/general/Russeldexter.ttf")).deriveFont(50f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/gui/img/general/Russeldexter.ttf")));
+
+        } catch (IOException | FontFormatException e) {
+
+        }*/
+
+
+        //title.setBounds(400, 100, 230, 50);
+        //title.setFont(font);
+
         anfitrion.setBounds(250,200, 230, 50);
         invitado.setBounds(210, 300, 310, 50);
         anfitrion.setFont(new Font("Arial", Font.PLAIN, 30));
         invitado.setFont(new Font("Arial", Font.PLAIN, 30));
         this.add(anfitrion);
         this.add(invitado);
+        //this.add(title);
     }
 }

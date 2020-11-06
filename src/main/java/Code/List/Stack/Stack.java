@@ -10,10 +10,6 @@ public class Stack {
         size = 0;
     }
 
-    /*public boolean empty(){
-        return last == null;
-    }*/// This is going to be here just if we need to check if the stack is empty
-
     /**
      * This what give us is the possibility of
      * inset a new node to the list
@@ -31,7 +27,7 @@ public class Stack {
     /**
      * This give us the chance to obtain at first
      * the last element added to the stack
-     * @return
+     * @return aux
      */
     public int delete(){
         int aux  = last.num;
@@ -42,7 +38,7 @@ public class Stack {
 
     /**
      * It gives us the size of the hold stack
-     * @return
+     * @return size
      */
     public int stackSize(){
         return size;

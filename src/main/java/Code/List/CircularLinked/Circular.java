@@ -5,10 +5,19 @@ public class Circular {
     NodeCircular first;
     NodeCircular last;
 
+    /**
+     * It determine if the circular list is empty
+     * or not
+     * @return boolean value
+     */
     public boolean verification(){
         return size == 0;
     }
 
+    /**
+     * It insets a new node to the circular list
+     * @param data String
+     */
     public void insert(String data){
         NodeCircular newNode  =  new NodeCircular(data);
 
@@ -34,11 +43,21 @@ public class Circular {
         }
     }
 
+
+    /**
+     * It give us the size of the circular list
+     * in a determine moment.
+     * @return Int
+     */
     public int size (){
 
         return size;
     }
 
+    /**
+     * Show us in console the contend in the
+     * circular list
+     */
     public void showCircular (){
         if(!verification()){
             NodeCircular aux = first;
@@ -53,6 +72,11 @@ public class Circular {
         }
     }
 
+    /**
+     * It give us the contend of an specific node
+     * @param pos int, poss in the list
+     * @return the contend of that node
+     */
     public String getID (int pos){
         NodeCircular aux = first;
         for (int i = 0; i < size; i++){
@@ -65,6 +89,12 @@ public class Circular {
         return aux.data;
     }
 
+    /**
+     * It modify the contend that is inside
+     * of some node
+     * @param pos the poss that is going to be modify
+     * @param data the info that is going to be added
+     */
     public void modify (int pos, String data){
 
         if (verification()){
@@ -86,7 +116,6 @@ public class Circular {
                             aux = aux.nextNode;
                         }
                     }
-
                 }else{
                     System.out.println("Poa out of range");
                 }

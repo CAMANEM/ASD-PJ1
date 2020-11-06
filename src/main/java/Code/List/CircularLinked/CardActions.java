@@ -37,6 +37,7 @@ public class CardActions {
      * @param flagList
      */
     public void setFlagList(boolean[] flagList) {
+
         this.flagList = flagList;
     }
 

@@ -9,11 +9,20 @@ public class DoubleList {
         last = null;
     }
 
+    /**
+     * It determines if the list is empty or not
+     * @return boolean  value
+     */
     public boolean verification(){
 
         return first == null;
     }
 
+    /**
+     * It inserts to the list every node, it is
+     * being added at the end of the list
+     * @param data data that is going to be added
+     */
     public void insert(String data){
         if(!verification()){
             last = new NodeDouble(data, null, last);
@@ -25,6 +34,11 @@ public class DoubleList {
         }
     }
 
+    /**
+     * It inserts to the list every node, it is
+     * being added at the beginning of the list
+     * @param data data that is going to be added
+     */
     public void insertP(String data){
         if(!verification()){
             first = new NodeDouble(data, first, null);
@@ -36,6 +50,10 @@ public class DoubleList {
         }
     }
 
+    /**
+     * It show us the nodes, and the information
+     * inside of them
+     */
     public void showDouble (){
         if(!verification()){
             NodeDouble aux = first;

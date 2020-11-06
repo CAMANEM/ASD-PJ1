@@ -116,7 +116,7 @@ public class GraphicController extends Observable implements ActionListener {
 
             }else if(i < 10){
 
-                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+ 50 +".png");
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/Stack.jpg");
                 handgame[i] = new JButton();
                 handgame[i].setBounds(posx, 480, 180, 250);
                 handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
@@ -126,7 +126,7 @@ public class GraphicController extends Observable implements ActionListener {
 
             }
             else{
-                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/"+(i + 1) +".png");
+                ImageIcon buttonImage = new ImageIcon("src/main/java/gui/img/cards/Stack.jpg");
                 handgame[i] = new JButton();
                 handgame[i].setBounds(1050, 130, 180, 250);
                 handgame[i].setIcon(new ImageIcon(buttonImage.getImage().getScaledInstance(handgame[i].getWidth(), handgame[i].getHeight(), Image.SCALE_SMOOTH)));
@@ -295,7 +295,6 @@ public class GraphicController extends Observable implements ActionListener {
                         justCard = true;
 
                     }
-
 
                     else{
                         logger.log(Level.WARNING, "You don´t have enough mana for this summon");

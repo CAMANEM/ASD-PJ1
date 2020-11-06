@@ -18,7 +18,6 @@ import javax.swing.*;
 public class Client {
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
-    //private String mensaje;
     private String HOST;
 
     private int port;

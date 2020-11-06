@@ -271,6 +271,12 @@ public class Player {
     }
 
 
+    /**
+     * Returns the damage of the card, but the
+     * damage divided at 50%
+     * @param card specific card
+     * @return card with the new value
+     */
     private static Card counterSecret(Card card){
 
         if (secret.equals("Claw Break") && card.type.equals("Minion")){
@@ -280,6 +286,11 @@ public class Player {
         return card;
     }
 
+    /**
+     * It increases the mana value in relation
+     * to the card value
+     * @param card
+     */
     private static void enhanceSecret(Card card){
 
         if (secret.equals("Magic Stones of Mana")){
@@ -330,6 +341,11 @@ public class Player {
         }
     }
 
+    /**
+     * It plays an specific sound according
+     * to the action provided
+     * @param sound sound name
+     */
     public static void playSound(String sound){
         secret = "";
         try {

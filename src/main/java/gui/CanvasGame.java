@@ -18,7 +18,6 @@ public class CanvasGame extends JPanel {
     JScrollPane scrollPane = new JScrollPane(area);
 
 
-
     /**
      * Draws the background image
      * @param g
@@ -27,7 +26,7 @@ public class CanvasGame extends JPanel {
         super.paintComponent(g);
         Image imagen;
         try{
-            imagen = ImageIO.read(new File("src/main/java/gui/img/general/WoodenTable.jpg"));
+            imagen = ImageIO.read(new File("src/main/java/gui/img/general/NavyBlue.jpg"));
             g.drawImage(imagen,0,0, 1600,800, null);
 
         }
@@ -46,7 +45,6 @@ public class CanvasGame extends JPanel {
 
     }
 
-
     /**
      * Add the labels with the life and mana to the canvas
      */
@@ -58,9 +56,6 @@ public class CanvasGame extends JPanel {
 
 
         this.add(scrollPane);
-        //this.add(area);
-
-
 
         this.setLayout(null);
 
@@ -69,6 +64,9 @@ public class CanvasGame extends JPanel {
         summonedCard.setBounds(600, 50, 270, 350);
         life.setFont(new Font("Arial", Font.PLAIN, 30));
         mana.setFont(new Font("Arial", Font.PLAIN, 30));
+        life.setForeground(Color.red);
+        mana.setForeground(new Color(36,191,163));
+
         this.add(summonedCard);
         this.add(life);
         this.add(mana);
@@ -94,24 +92,13 @@ public class CanvasGame extends JPanel {
      */
     public void putButtons(JButton[] handgame, JButton skipTurn) {
 
-        //ListCL listita =  new ListCL();
-
-
         for (int i = 0; i < 10; i++) {
 
             this.add(handgame[i]);
 
-            //listita.insert(handgame[i]);
-
         }
         this.add(handgame[10]);
         this.add(skipTurn);
-        /*if (!listita.verification()){
-            listita.showList();
-
-        }else{
-            System.out.println("hdfdjfh");
-        }*/
     }
 
     /**

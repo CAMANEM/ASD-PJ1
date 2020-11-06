@@ -5,6 +5,10 @@ public class NodeCircular {
     NodeCircular nextNode;
     NodeCircular prevNode;
 
+    /**
+     * Creates a new node type in this list
+     * @param data data inside the node
+     */
     public NodeCircular(String data) {
         this.data = data;
         nextNode = null;

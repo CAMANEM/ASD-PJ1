@@ -43,8 +43,6 @@ public class Main implements Observer {
      */
     public Main() {
 
-        //System.out.println(this.card.healing);
-
         this.graphics = new GraphicController();
         this.graphics.addObserver(this);
         this.server = new Server();
