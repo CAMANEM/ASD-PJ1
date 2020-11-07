@@ -52,8 +52,6 @@ public class CanvasGame extends JPanel {
 
 
         scrollPane.setBounds(1310, 100, 260, 500);
-        //area.setEditable(true);
-
 
         this.add(scrollPane);
 

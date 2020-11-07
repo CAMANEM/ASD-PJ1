@@ -89,9 +89,7 @@ public class Server {
     public String getHost(){
 
         try{
-
             this.ip = InetAddress.getLocalHost().getHostAddress();
-
         }
 
         catch (UnknownHostException e) {

@@ -69,7 +69,6 @@ public class GraphicController extends Observable implements ActionListener {
         createFrame();
         createGameButtons();
         controller.setFlagList(flags);
-
     }
 
     /**
@@ -79,7 +78,6 @@ public class GraphicController extends Observable implements ActionListener {
      */
     public void setHistory(String data){
         frame.history(data);
-
     }
 
     public boolean[] getFlags() {
@@ -216,8 +214,6 @@ public class GraphicController extends Observable implements ActionListener {
         }
 
     }
-
-
 
 
     /**

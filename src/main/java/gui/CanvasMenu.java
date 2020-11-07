@@ -13,10 +13,6 @@ import java.io.*;
 class CanvasMenu extends JPanel{
 
     private final static Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
-    private JLabel title = new JLabel("Monster TECG");
-    private Font font;
-
-
 
 
     /**
@@ -41,8 +37,8 @@ class CanvasMenu extends JPanel{
             logger.log(Level.SEVERE, "Can´t open the image file");
         }
 
-        g.setColor(Color.cyan);
-        g.drawString("Default Data", 600    , 125);
+        g.setColor(Color.WHITE);
+        g.drawString("Monster TEC", 600    , 125);
     }
 
     /**
@@ -51,7 +47,6 @@ class CanvasMenu extends JPanel{
     public CanvasMenu(){
 
         this.setLayout(null);
-
 
     }
 
@@ -63,12 +58,11 @@ class CanvasMenu extends JPanel{
      */
     public void putButtons(JButton anfitrion, JButton invitado){
 
-        anfitrion.setBounds(250,200, 230, 50);
-        invitado.setBounds(210, 300, 310, 50);
+        anfitrion.setBounds(650,200, 230, 50);
+        invitado.setBounds(610, 300, 310, 50);
         anfitrion.setFont(new Font("Arial", Font.PLAIN, 30));
         invitado.setFont(new Font("Arial", Font.PLAIN, 30));
         this.add(anfitrion);
         this.add(invitado);
-        //this.add(title);
     }
 }

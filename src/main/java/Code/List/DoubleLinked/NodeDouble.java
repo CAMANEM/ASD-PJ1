@@ -26,5 +26,4 @@ public class NodeDouble {
         this.prev = prev;
     }
 
-
 }

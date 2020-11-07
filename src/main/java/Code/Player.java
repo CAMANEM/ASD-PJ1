@@ -22,11 +22,9 @@ public class Player {
 
 
     public static void reset(){
-
         life = 1000;
         mana = 200;
         secret = "";
-
     }
 
 
@@ -143,10 +141,7 @@ public class Player {
                 playSound("34");
             }
         }
-
         return false;
-
-
     }
 
 
@@ -254,8 +249,6 @@ public class Player {
             if(secret.equals("Death")){
                 playSound("36");
             }
-
-
         }
 
         else if (card_name.equals("Mana Leak")){
@@ -267,7 +260,6 @@ public class Player {
         }
 
         return false;
-
     }
 
 
